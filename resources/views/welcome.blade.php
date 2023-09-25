@@ -131,7 +131,7 @@
                                                 <div class="welcome-one__left wow fadeInLeft" data-wow-duration="1500ms">
                                                     <div class="welcome-one__img-box">
                                                         <div class="welcome-one__img">
-                                                            <img decoding="async" src="{{ asset('moniz/wp-content/uploads/2021/07/welcome-one-img-1.png') }}" alt="">
+                                                            <img decoding="async" src="{{ asset('company/'.$company->company_cover) }}" alt="">
                                                             <div class="welcome-one__shape-1"></div>
                                                             <div class="welcome-one__shape-2"></div>
                                                         </div>
@@ -146,29 +146,9 @@
                                                 <div class="welcome-one__right">
                                                     <div class="section-title text-left">
                                                         <span class="section-title__tagline">Tentang Hummatech Digital Indonesia</span>
-                                                        <h2 class="section-title__title">We provide the best web services</h2>
+                                                        <h2 class="section-title__title">{{ $company->company_title }}</h2>
                                                     </div>
-                                                    <div class="welcome-one__solutions">
-                                                        <div class="welcome-one__solutions-single">
-                                                            <div class="welcome-one__solutions-icon">
-                                                                <span class="icon-tick"></span>
-                                                            </div>
-                                                            <div class="welcome-one__solutions-text-box">
-                                                                <p>Solution for small &amp; <br> large businesses</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="welcome-one__solutions-single">
-                                                            <div class="welcome-one__solutions-icon">
-                                                                <span class="icon-tick"></span>
-                                                            </div>
-                                                            <div class="welcome-one__solutions-text-box">
-                                                                <p>Solution for small &amp; <br> large businesses</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="welcome-one__right-text-1">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.</p>
-                                                    <p class="welcome-one__right-text-2">You need to be sure there isn't anything embarrassing hidden in the middle of text. All the lorem ipsum generators on the Internet.</p>
-
+                                                    <p class="welcome-one__right-text-1">{{ $company->company_description }}</p>
                                                 </div>
                                             </div>
                                         </div>

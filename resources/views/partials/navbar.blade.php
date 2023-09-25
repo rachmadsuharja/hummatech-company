@@ -4,7 +4,7 @@
             <div class="main-menu-wrapper__left clearfix">
                 {{-- Logo Hummatech --}}
                 <div class="main-menu-wrapper__logo">
-                    <a href="#"><img decoding="async" loading="lazy" width="134" height="34" src="{{ asset('moniz/wp-content/uploads/2021/07/logo-light.png') }}" id="thm-logo" alt="Hummatech"></a>
+                    <a href="#"><img decoding="async" loading="lazy" src="{{ asset('hummatech.png') }}" id="thm-logo" alt="Hummatech"></a>
                 </div>
                 <div class="main-menu-wrapper__social">
                     <a href="#"><i class="fab fa-twitter"></i></a>
