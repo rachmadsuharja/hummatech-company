@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('company_title');
             $table->longText('company_description');
-            $table->string('company_cover');
+            $table->string('company_cover')->nullable();
             $table->timestamps();
         });
     }

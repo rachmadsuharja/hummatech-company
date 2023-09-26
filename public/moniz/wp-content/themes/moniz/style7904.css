@@ -1477,7 +1477,7 @@ body.boxed-wrapper {
 
 .stricky-header.main-menu {
     padding: 0 60px;
-    background-color: var(--moniz-black, #1e1e22);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .main-menu .main-menu__list,

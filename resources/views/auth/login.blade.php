@@ -39,7 +39,7 @@
 					<div class="fxt-bg-img" data-bg-image="{{ asset('xmee/img/figure/bg4-l.jpg') }}">
 						<div class="fxt-header">
 							<div class="fxt-transformY-50 fxt-transition-delay-1">
-								<a href="login-4.html" class="fxt-logo"><img src="{{ asset('xmee/img/logo-4.png') }}" alt="Logo"></a>
+								<a href="login-4.html" class="fxt-logo"><img src="{{ asset('hummatech.png') }}" alt="Logo"></a>
 							</div>
 							<div class="fxt-transformY-50 fxt-transition-delay-2">
 								<h1>Welcome to Hummatech</h1>

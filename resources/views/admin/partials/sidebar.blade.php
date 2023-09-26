@@ -16,7 +16,7 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#approvals" role="button" aria-expanded="false" aria-controls="approvals">
                     <i class="link-icon" data-feather="check-square"></i>
                     <span class="link-title">Persetujuan</span>
@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Request::routeIs('news.index') ? 'active' : '' }}">
                 <a href="{{ route('news.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="tv"></i>
@@ -74,8 +74,8 @@
                         <li class="nav-item {{ Request::routeIs('company-profiles') ? 'active' : '' }}">
                             <a href="{{ route('company-profiles') }}" class="nav-link">Profil Perusahaan</a>
                         </li>
-                        <li class="nav-item {{ Request::routeIs('company-services') ? 'active' : '' }}">
-                            <a href="{{ route('company-services') }}" class="nav-link">Layanan Perusahaan</a>
+                        <li class="nav-item {{ Request::routeIs('company-services.index') ? 'active' : '' }}">
+                            <a href="{{ route('company-services.index') }}" class="nav-link">Layanan Perusahaan</a>
                         </li>
                     </ul>
                 </div>

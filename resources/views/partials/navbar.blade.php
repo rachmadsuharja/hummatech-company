@@ -36,7 +36,7 @@
                             </ul>
                         </li>
                         <li id="menu-item-672" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-672"><a href="#">PRODUK</a></li>
-                        <li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-74"><a href="#">KONTAK KAMI</a></li>
+                        <li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-74"><a href="#">KONTAK</a></li>
                     </ul>
                 </div>
             </div>

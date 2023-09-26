@@ -42,6 +42,7 @@ Route::middleware('admin')->group(function() {
     Route::get('inbox', [ContactsController::class, 'index'])->name('inbox');
     Route::get('company-profiles', [CompanyProfilesController::class, 'index'])->name('company-profiles');
     Route::put('company-profiles', [CompanyProfilesController::class, 'update'])->name('company-profiles.update');
-    Route::get('company-services', [CompanyServicesController::class, 'index'])->name('company-services');
+    Route::put('company-profiles/work-method', [CompanyProfilesController::class, 'workUpdate'])->name('work.update');
+    Route::resource('company-services', CompanyServicesController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
