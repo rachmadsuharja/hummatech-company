@@ -49,11 +49,10 @@
 							</div>
 						</div>
 						<ul class="fxt-socials">
-							<li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-4"><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="fxt-twitter fxt-transformY-50 fxt-transition-delay-5"><a href="#" title="twitter"><i class="fab fa-twitter"></i></a></li>
-							<li class="fxt-google fxt-transformY-50 fxt-transition-delay-6"><a href="#" title="google"><i class="fab fa-google-plus-g"></i></a></li>
-							<li class="fxt-linkedin fxt-transformY-50 fxt-transition-delay-7"><a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-							<li class="fxt-youtube fxt-transformY-50 fxt-transition-delay-8"><a href="#" title="youtube"><i class="fab fa-youtube"></i></a></li>
+							<li class="fxt-instagram fxt-transformY-50 fxt-transition-delay-6"><a href="{{ ($sosmed->instagram != null) ? $sosmed->instagram : '#' }}" title="instagram"><i class="fab fa-instagram"></i></a></li>
+							<li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-4"><a href="{{ ($sosmed->facebook != null) ? $sosmed->facebook : '#' }}" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="fxt-twitter fxt-transformY-50 fxt-transition-delay-5"><a href="{{ ($sosmed->twitter != null) ? $sosmed->twitter : '#' }}" title="twitter"><i class="fab fa-twitter"></i></a></li>
+							<li class="fxt-youtube fxt-transformY-50 fxt-transition-delay-8"><a href="{{ ($sosmed->youtube != null) ? $sosmed->youtube : '#' }}" title="youtube"><i class="fab fa-youtube"></i></a></li>
 						</ul>
 					</div>
 				</div>

@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="nav-item {{ Request::routeIs('industrial-class') ? 'active' : '' }}">
-                <a href="{{ route('industrial-class') }}" class="nav-link">
+                <a href="{{ route('industrial-class.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="home"></i>
                     <span class="link-title">Kelas Industri</span>
                 </a>

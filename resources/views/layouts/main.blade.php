@@ -655,7 +655,7 @@
         }
 
         .preloader .preloader__image {
-            background-image: url(http://layerdrops.com/monizwp/wp-content/uploads/2021/07/loader.png);
+            background-image: url({{ asset('hummatech_logo.png') }});
         }
 
          :root {
@@ -712,8 +712,8 @@
             margin: 0 !important;
         }
     </style>
-    <link rel="icon" href="{{ asset('moniz/wp-content/uploads/2021/07/loader-73x73.png') }}" sizes="32x32" />
-    <link rel="icon" href="{{ asset('moniz/wp-content/uploads/2021/07/loader.png') }}" sizes="192x192" />
+    <link rel="icon" href="{{ asset('hummatech_logo.png') }}" sizes="32x32" />
+    <link rel="icon" href="{{ asset('hummatech_logo.png') }}" sizes="192x192" />
     <link rel="apple-touch-icon" href="{{ asset('moniz/wp-content/uploads/2021/07/loader.png') }}" />
     <meta name="msapplication-TileImage" content="https://layerdrops.com/monizwp/wp-content/uploads/2021/07/loader.png" />
     <style id="kirki-inline-styles"></style>

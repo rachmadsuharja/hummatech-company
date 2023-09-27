@@ -9,12 +9,12 @@
                                 <div class="footer-widget__about-logo">
                                     <a href="index.html"><img decoding="async" id="fLogo" src="{{ asset('hummatech.png') }}" alt="Moniz" /></a>
                                 </div>
-                                <p class="footer-widget__about-text">Welcome to our website design agency. Lore ipsum simply text amet cing elit.</p>
+                                <p class="footer-widget__about-text">Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology)</p>
                                 <div class="footer-widget__about-social-list">
-                                    <a href="#"><span class="fab fa-twitter"></span></a>
-                                    <a href="#"><span class="fab fa-facebook"></span></a>
-                                    <a href="#"><span class="fab fa-pinterest-p"></span></a>
-                                    <a href="#"><span class="fab fa-instagram"></span></a>
+                                    <a href="{{ ($sosmed->instagram != null) ? $sosmed->instagram : '#' }}"><span class="fab fa-instagram"></span></a>
+                                    <a href="{{ ($sosmed->facebook != null) ? $sosmed->facebook : '#' }}"><span class="fab fa-facebook"></span></a>
+                                    <a href="{{ ($sosmed->twitter != null) ? $sosmed->twitter : '#' }}"><span class="fab fa-twitter"></span></a>
+                                    <a href="{{ ($sosmed->youtube != null) ? $sosmed->youtube : '#' }}"><span class="fab fa-youtube"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -29,10 +29,10 @@
                                 <h3 class="footer-widget__title">Explore</h3>
                                 <div class="menu-footer-menu-container">
                                     <ul id="menu-footer-menu" class="footer-widget__explore-list m-0 list-unstyled">
-                                        <li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="about/index.html">About</a></li>
-                                        <li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70"><a href="team/index.html">Meet our team</a></li>
-                                        <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69"><a href="portfolio/index.html">Case Stories</a></li>
-                                        <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="blog-grid/index.html">Latest News</a></li>
+                                        <li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="about/index.html">Kelas Industri</a></li>
+                                        <li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70"><a href="team/index.html">PKL</a></li>
+                                        <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69"><a href="portfolio/index.html">Produk Kami</a></li>
+                                        <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="blog-grid/index.html"></a></li>
                                         <li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact</a></li>
                                     </ul>
                                 </div>
@@ -46,13 +46,12 @@
                     <div class="elementor-element elementor-element-f307785 elementor-widget elementor-widget-footer-contact" data-id="f307785" data-element_type="widget" data-widget_type="footer-contact.default">
                         <div class="elementor-widget-container">
                             <div class="footer-widget__column footer-widget__contact">
-                                <h3 class="footer-widget__title">Contact</h3>
-                                <p class="footer-widget__contact-text">66 Broklyn Street New York United States of America
-                                </p>
+                                <h3 class="footer-widget__title">Alamat</h3>
+                                <p class="footer-widget__contact-text">{{ $other->address }}</p>
                                 <div class="footer-widget__contact-info">
                                     <p>
-                                        <a href="tel:http://92-666-888-0000" class="footer-widget__contact-phone">92 666 888 0000</a>
-                                        <a href="mailto:needhelp@moniz.com" class="footer-widget__contact-mail">needhelp@moniz.com</a>
+                                        <a href="https://wa.me/{{ $sosmed->whatsapp }}" class="footer-widget__contact-phone">{{ $sosmed->whatsapp }}</a>
+                                        <a href="mailto:{{ $other->email }}" class="footer-widget__contact-mail text-primary">{{ $other->email }}</a>
                                     </p>
                                 </div>
                             </div>
@@ -101,7 +100,7 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="site-footer-bottom__inner">
-                                                <p class="site-footer-bottom__copy-right">© Copyright 2021 by <a href="#">Layerdrops.com</a></p>
+                                                <p class="site-footer-bottom__copy-right">Copyright &copy; <a href="#">Hummatech - All Right Reserved</a></p>
                                             </div>
                                         </div>
                                     </div>

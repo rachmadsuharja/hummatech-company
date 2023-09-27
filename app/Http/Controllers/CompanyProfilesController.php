@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Sosmed;
 use App\Models\WorkMethod;
 use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
+use App\Models\OtherInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,9 +19,11 @@ class CompanyProfilesController extends Controller
     public function index()
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $sosmed = Sosmed::findOrFail(1);
         $company = CompanyProfile::findOrFail(1);
         $work = WorkMethod::findOrFail(1);
-        return view('admin.company-profile.index', compact('admin', 'company', 'work'));
+        $other = OtherInfo::findOrFail(1);
+        return view('admin.company-profile.index', compact('admin', 'company', 'work', 'sosmed', 'other'));
     }
 
     public function update(Request $request) {
@@ -98,6 +102,65 @@ class CompanyProfilesController extends Controller
         ]);
 
         toastr()->success('Berhasil mengubah data', 'Success');
+        return to_route('company-profiles');
+    }
+
+    public function sosmedUpdate(Request $request) {
+        $validated = $this->validate($request, [
+            'instagram' => 'nullable|url|max:500',
+            'facebook' => 'nullable|url|max:500',
+            'twitter' => 'nullable|url|max:500',
+            'youtube' => 'nullable|url|max:500',
+            'whatsapp' => 'nullable|min:11|max:14|regex:/^[0-9]+$/',
+        ], [
+            'instagram.url' => 'URL tidak valid',
+            'facebook.url' => 'URL tidak valid',
+            'twitter.url' => 'URL tidak valid',
+            'youtube.url' => 'URL tidak valid',
+            'instagram.max' => 'URL tidak valid',
+            'facebook.max' => 'URL tidak valid',
+            'twitter.max' => 'URL tidak valid',
+            'youtube.max' => 'URL tidak valid',
+            'whatsapp.min' => 'Nomer whatsapp tidak valid',
+            'whatsapp.max' => 'Nomer whatsapp valid',
+            'whatsapp.regex' => 'Nomor whatsapp tidak valid',
+        ]);
+
+        $sosmed = Sosmed::findOrFail(1);
+        $sosmed->update([
+            'instagram' => $validated['instagram'],
+            'facebook' => $validated['facebook'],
+            'twitter' => $validated['twitter'],
+            'youtube' => $validated['youtube'],
+            'whatsapp' => $validated['whatsapp'],
+        ]);
+
+        toastr()->success('Berhasil mengubah tautan', 'Success');
+        return to_route('company-profiles');
+    }
+
+    public function otherInfoUpdate(Request $request) {
+        $validated = $this->validate($request, [
+            'email' => 'nullable|email',
+            'start_working' => 'nullable',
+            'finish_working' => 'nullable',
+            'address' => 'nullable|min:5|max:1000',
+
+        ], [
+            'email.email' => 'Email tidak valid',
+            'address.min' => 'Alamat terlalu pendek',
+            'address.max' => 'Alamat maksimal 1000 karakter',
+        ]);
+
+        $other = OtherInfo::findOrFail(1);
+        $other->update([
+            'email' => $validated['email'],
+            'start_working' => $validated['start_working'],
+            'finish_working' => $validated['finish_working'],
+            'address' => $validated['address'],
+        ]);
+
+        toastr()->success('Berhasil mengubah tautan', 'Success');
         return to_route('company-profiles');
     }
 }

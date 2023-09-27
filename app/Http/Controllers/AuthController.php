@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function login() {
-        return view('auth.login');
+        $sosmed = Sosmed::findOrFail(1);
+        return view('auth.login', compact('sosmed'));
     }
 
     public function postlogin(Request $request) {

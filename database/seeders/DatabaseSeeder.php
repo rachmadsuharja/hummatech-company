@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             CompanyProfileSeeder::class,
             CompanyServiceSeeder::class,
             WorkMethodSeeder::class,
+            SosmedSeeder::class,
+            OtherInfoSeeder::class,
         ]);
     }
 }

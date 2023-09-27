@@ -16,9 +16,9 @@
 
 @section('container')
 <!-- Preloader -->
-{{-- <div class="preloader">
+<div class="preloader bg-light" style="display: grid">
     <div class="preloader__image"></div>
-</div> --}}
+</div>
 <!-- /.preloader -->
 
 <div id="page" class="site page-wrapper">
@@ -100,14 +100,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- If we need navigation buttons -->
-                                        <div class="slider-bottom-box d-flex justify-content-center">
-                                            <div class="main-slider__nav w-100 d-flex justify-content-between">
-                                                <i class="fa fa-arrow-left btn btn-outline-light p-3 rounded-circle bg-white-50" id="main-slider__swiper-button-next"></i>
-                                                <i class="fa fa-arrow-right btn btn-outline-light p-3 rounded-circle" id="main-slider__swiper-button-prev"></i>
-                                            </div>
-                                            <div class="swiper-pagination w-100 d-flex justify-content-center" id="main-slider-pagination"></div>
                                         </div>
                                     </div>
                                 </section>
@@ -357,91 +349,20 @@
                                     <div class="container">
                                         <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": { "0": { "spaceBetween": 30, "slidesPerView": 2 }, "375": { "spaceBetween": 30, "slidesPerView": 2 }, "575": { "spaceBetween": 30, "slidesPerView": 3 }, "767": { "spaceBetween": 50, "slidesPerView": 4 }, "991": { "spaceBetween": 50, "slidesPerView": 5 }, "1199": { "spaceBetween": 100, "slidesPerView": 5 } }}'>
                                             <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png')}}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png')}}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
-                                                <div class="swiper-slide">
-                                                    <a href="#">
-                                                        <img loading="lazy" width="150" height="80" src="{{ asset('moniz/wp-content/uploads/2021/07/brand-1.png') }}" class="attachment-moniz_brand_logo_150X80 size-moniz_brand_logo_150X80" alt="" decoding="async" /> </a>
-                                                </div>
-                                                <!-- /.swiper-slide -->
+                                                @forelse ($school as $sch)
+                                                    <div class="swiper-slide">
+                                                        <a href="#">
+                                                            <img loading="lazy" width="150" height="80" src="{{ asset('storage/school/'.$sch->school_logo) }}" alt="" decoding="async" />
+                                                        </a>
+                                                    </div>
+                                                @empty
+                                                    <hr>
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>
                                 </section>
                                 <!--Brand Two End-->
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="elementor-section elementor-top-section elementor-element elementor-element-2cb5e0c elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="2cb5e0c" data-element_type="section">
-            <div class="elementor-container elementor-column-gap-no">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7b569dc" data-id="7b569dc" data-element_type="column">
-                    <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-f0a2a93 elementor-widget elementor-widget-moniz-call-to-action" data-id="f0a2a93" data-element_type="widget" data-widget_type="moniz-call-to-action.default">
-                            <div class="elementor-widget-container">
-
-                                <!--CTA One Start-->
-                                <section class="cta-one">
-                                    <div class="cta-one-bg" style="background-image: url({{ asset('moniz/wp-content/uploads/2021/07/cta-one-bg.jpg') }})"></div>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-xl-12">
-                                                <div class="cta-one__inner">
-                                                    <p class="cta-one__tagline">We can help you stand out your business</p>
-                                                    <h2 class="cta-one__title">Website design services for <br> your businesses</h2>
-                                                    <a href="contact/index.html" class="thm-btn cta-one__btn thm-btn--dark--light-hover"><span>Free consultation</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!--CTA One End-->
 
                             </div>
                         </div>

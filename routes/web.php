@@ -36,13 +36,15 @@ Route::middleware('admin')->group(function() {
     Route::get('incoming-appretinceship', [AppretinceshipController::class, 'incoming'])->name('incoming-appretinceship');
     Route::get('incoming-industrial-class', [IndustrialClassController::class, 'incoming'])->name('incoming-industrial-class');
     Route::get('apprenticeship', [AppretinceshipController::class, 'index'])->name('appretinceship');
-    Route::get('industrial-class', [IndustrialClassController::class, 'index'])->name('industrial-class');
+    Route::resource('industrial-class', IndustrialClassController::class);
     Route::resource('news', NewsController::class);
     Route::resource('products', ProductsController::class);
     Route::get('inbox', [ContactsController::class, 'index'])->name('inbox');
     Route::get('company-profiles', [CompanyProfilesController::class, 'index'])->name('company-profiles');
     Route::put('company-profiles', [CompanyProfilesController::class, 'update'])->name('company-profiles.update');
     Route::put('company-profiles/work-method', [CompanyProfilesController::class, 'workUpdate'])->name('work.update');
+    Route::put('company-profiles/sosmed', [CompanyProfilesController::class, 'sosmedUpdate'])->name('sosmed.update');
+    Route::put('company-profiles/other-info', [CompanyProfilesController::class, 'otherInfoUpdate'])->name('other-info.update');
     Route::resource('company-services', CompanyServicesController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
