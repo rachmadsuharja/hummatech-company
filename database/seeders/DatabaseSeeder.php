@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             WorkMethodSeeder::class,
             SosmedSeeder::class,
             OtherInfoSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

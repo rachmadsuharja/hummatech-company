@@ -12,6 +12,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndustrialClassController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,5 +54,6 @@ Route::middleware('admin')->group(function() {
     Route::put('company-profiles/other-info', [CompanyProfilesController::class, 'otherInfoUpdate'])->name('other-info.update');
     Route::resource('company-services', CompanyServicesController::class);
     Route::resource('core-features', CoreFeaturesController::class);
+    Route::resource('testimonial', TestimonialController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

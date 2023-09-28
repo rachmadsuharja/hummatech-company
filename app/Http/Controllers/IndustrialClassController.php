@@ -105,6 +105,7 @@ class IndustrialClassController extends Controller
             'school_name.required' => 'Nama sekolah tidak boleh kosong',
             'school_name.min' => 'Nama sekolah terlalu pendek',
             'school_name.max' => 'Nama sekolah maksimal 100 karakter',
+            'school_name.unique' => 'Sekolah sudah terdaftar',
             'school_address.required' => 'Alamat tidak boleh kosong',
             'school_date.required' => 'Tanggal bergabung tidak boleh kosong',
             'school_date.date' => 'Format tanggal tidak valid',

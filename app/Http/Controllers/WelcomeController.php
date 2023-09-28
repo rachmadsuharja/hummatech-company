@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\CompanyServices;
 use App\Models\IndustrialClass;
+use App\Models\Testimonial;
 
 class WelcomeController extends Controller
 {
@@ -34,7 +35,8 @@ class WelcomeController extends Controller
     public function apprenticeship() {
         $other = OtherInfo::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
-        return view('apprenticeship', compact('sosmed','other'));
+        $testimonial = Testimonial::all();
+        return view('apprenticeship', compact('sosmed','other', 'testimonial'));
     }
 
     public function product() {

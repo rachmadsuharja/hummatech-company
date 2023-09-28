@@ -1214,7 +1214,7 @@ ul {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: var(--moniz-primary, #fc653c);
+    background: #0804f9;
     position: fixed;
     bottom: 40px;
     right: 40px;
