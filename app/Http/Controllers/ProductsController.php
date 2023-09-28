@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Sosmed;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class ProductsController extends Controller
             });
         })->paginate(8);
         $product->appends(['search' => $search]);
-        return view('admin.products.index', compact('admin','product'));
+        $sosmed = Sosmed::findOrFail(1);
+        return view('admin.products.index', compact('admin','product', 'sosmed'));
     }
 
     /**

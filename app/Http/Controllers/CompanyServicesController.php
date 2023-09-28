@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyServices;
+use App\Models\CoreFeatures;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,8 @@ class CompanyServicesController extends Controller
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
         $services = CompanyServices::all();
-        return view('admin.company-services.index', compact('admin', 'services'));
+        $core = CoreFeatures::all();
+        return view('admin.company-services.index', compact('admin', 'services', 'core'));
     }
 
     /**

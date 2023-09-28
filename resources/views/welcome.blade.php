@@ -371,15 +371,9 @@
             </div>
         </section>
     </div>
-
-    <!-- the loop -->
-    @include('partials.footer')
-    <!-- end of the loop -->
-
-
-
 </div>
 <!-- #page -->
+
 @endsection
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyProfilesController;
 use App\Http\Controllers\CompanyServicesController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\CoreFeaturesController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndustrialClassController;
@@ -24,6 +25,11 @@ use App\Http\Controllers\ProductsController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('kelas-industri', [WelcomeController::class, 'industrialClass'])->name('kelas-industri');
+Route::get('pkl', [WelcomeController::class, 'apprenticeship'])->name('pkl');
+Route::get('blog', [WelcomeController::class, 'blog'])->name('blog');
+Route::get('produk', [WelcomeController::class, 'product'])->name('produk');
+Route::get('kontak', [WelcomeController::class, 'contact'])->name('kontak');
 
 Route::middleware('guest')->group(function() {
     Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -46,5 +52,6 @@ Route::middleware('admin')->group(function() {
     Route::put('company-profiles/sosmed', [CompanyProfilesController::class, 'sosmedUpdate'])->name('sosmed.update');
     Route::put('company-profiles/other-info', [CompanyProfilesController::class, 'otherInfoUpdate'])->name('other-info.update');
     Route::resource('company-services', CompanyServicesController::class);
+    Route::resource('core-features', CoreFeaturesController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

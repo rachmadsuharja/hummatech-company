@@ -28,7 +28,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             if (Auth::user()->role == 'admin') {
-                toastr()->success('Berhasil Login', 'Success');
+                toastr()->success('Berhasil Login', 'Welcome Admin');
                 return to_route('dashboard');
             }
         }

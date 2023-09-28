@@ -2,6 +2,11 @@
 <html lang="en-US">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
+@php
+    use Carbon\Carbon;
+@endphp
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -720,10 +725,11 @@
     @yield('style')
 </head>
 
-<body class="home page-template page-template-elementor_header_footer page page-id-12 wp-custom-logo theme-moniz woocommerce-no-js woocommerce-active elementor-default elementor-template-full-width elementor-kit-10 elementor-page elementor-page-12">
+<body class="position-relative">
 
     @yield('container')
 
+    @include('partials.footer')
 </body>
 
 <script type="text/javascript">

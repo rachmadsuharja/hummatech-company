@@ -29,11 +29,11 @@
                                 <h3 class="footer-widget__title">Explore</h3>
                                 <div class="menu-footer-menu-container">
                                     <ul id="menu-footer-menu" class="footer-widget__explore-list m-0 list-unstyled">
-                                        <li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="about/index.html">Kelas Industri</a></li>
-                                        <li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70"><a href="team/index.html">PKL</a></li>
-                                        <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69"><a href="portfolio/index.html">Produk Kami</a></li>
-                                        <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="blog-grid/index.html"></a></li>
-                                        <li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact</a></li>
+                                        <li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="{{ route('kelas-industri') }}">Kelas Industri</a></li>
+                                        <li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70"><a href="{{ route('pkl') }}">PKL</a></li>
+                                        <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69"><a href="{{ route('produk') }}">Produk</a></li>
+                                        <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href=""></a></li>
+                                        <li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="{{ route('kontak') }}">Kontak Kami</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -48,6 +48,7 @@
                             <div class="footer-widget__column footer-widget__contact">
                                 <h3 class="footer-widget__title">Alamat</h3>
                                 <p class="footer-widget__contact-text">{{ $other->address }}</p>
+                                <p class="footer-widget__contact-text">{{ $other->start_working .' - '. $other->finish_working }}</p>
                                 <div class="footer-widget__contact-info">
                                     <p>
                                         <a href="https://wa.me/{{ $sosmed->whatsapp }}" class="footer-widget__contact-phone">{{ $sosmed->whatsapp }}</a>

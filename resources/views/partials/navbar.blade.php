@@ -19,24 +19,16 @@
                 </a>
                 <div class="menu-main-menu-container">
                     <ul id="menu-main-menu" class="main-menu__list">
-                        <li id="menu-item-82" class="menu-item current-menu-item current_page_item">
-                            <a href="#" aria-current="page">BERANDA</a>
-                        </li>
-                        <li id="menu-item-80" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-80"><a href="#">PENDIDIKAN</a>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('welcome') }}" class="{{ (Request::routeIs('welcome')) ? 'text-primary fw-bold' : ''}}">Beranda</a></li>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="#"  class="{{ (Request::routeIs('kelas-industri','pkl')) ? 'text-primary fw-bold' : ''}}">Pendidikan</a>
                             <ul class="sub-menu">
-                                <li id="menu-item-279" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-279"><a href="#">KELAS INDUSTRI</a></li>
-                                <li id="menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-661"><a href="#">MAGANG/PKL</a></li>
+                                <li id="menu-item-279" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-279"><a href="{{ route('kelas-industri') }}" class="{{ (Request::routeIs('kelas-industri')) ? 'text-primary' : ''}}">Kelas Industri</a></li>
+                                <li id="menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-661"><a href="{{ route('pkl') }}" class="{{ (Request::routeIs('pkl')) ? 'text-primary' : ''}}">Magang/PKL</a></li>
                             </ul>
                         </li>
-                        <li id="menu-item-79" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-79"><a href="#">INFORMASI</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-163" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-163"><a href="portfolio/index.html">All portfolio</a></li>
-                                <li id="menu-item-162" class="menu-item menu-item-type-post_type menu-item-object-portfolio menu-item-162"><a href="portfolio/fimlor-experience/index.html">Portfolio details</a></li>
-                                <li id="menu-item-161" class="menu-item menu-item-type-post_type menu-item-object-portfolio menu-item-161"><a href="portfolio/desktop-mockup/index.html">Portfolio details full</a></li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-672" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-672"><a href="#">PRODUK</a></li>
-                        <li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-74"><a href="#">KONTAK</a></li>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="">Blog</a></li>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('produk') }}" class="{{ (Request::routeIs('produk')) ? 'text-primary fw-bold' : ''}}">Produk</a></li>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('kontak') }}" class="{{ (Request::routeIs('kontak')) ? 'text-primary fw-bold' : ''}}">Kontak</a></li>
                     </ul>
                 </div>
             </div>
