@@ -61,7 +61,7 @@
                                     <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true, "effect": "fade", "pagination": { "el": "#main-slider-pagination", "type": "bullets", "clickable": true }, "navigation": { "nextEl": "#main-slider__swiper-button-next", "prevEl": "#main-slider__swiper-button-prev" }, "autoplay": { "delay": 5000 }}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
-                                                <div class="image-layer" style="background-image: url({{ asset('moniz/wp-content/uploads/2021/07/main-slider-1-1.jpg') }});"></div>
+                                                <div class="image-layer" style="background-image: url({{ asset('company/cover1.jpg') }});"></div>
                                                 <div class="image-layer-overlay"></div>
                                                 <div class="main-slider-shape-1"></div>
                                                 <div class="main-slider-shape-2"></div>
@@ -74,14 +74,14 @@
                                                             <div class="main-slider__content">
                                                                 <p>Hummasoft Technology</p>
                                                                 <h2>Konsultasikan Kebutuhan <span class="hummatech-blue">Software</span> Anda</h2>
-                                                                <a href="contact/index.html" class="thm-btn"><span>Coba Sekarang</span></a>
+                                                                <a href="{{ route('kontak') }}" class="thm-btn"><span>Coba Sekarang</span></a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="swiper-slide">
-                                                <div class="image-layer" style="background-image: url({{ asset('moniz/wp-content/uploads/2021/07/main-slider-1-2.jpg') }});"></div>
+                                                <div class="image-layer" style="background-image: url({{ asset('company/cover2.png') }});"></div>
                                                 <div class="image-layer-overlay"></div>
                                                 <div class="main-slider-shape-1"></div>
                                                 <div class="main-slider-shape-2"></div>
@@ -94,7 +94,7 @@
                                                             <div class="main-slider__content">
                                                                 <p>Hummasoft Technology</p>
                                                                 <h2>Jadilah <span class="hummatech-blue">Expert</span> Programmer</h2>
-                                                                <a href="contact/index.html" class="thm-btn"><span>Gabung Bersama Kami</span></a>
+                                                                <a href="{{ route('kontak') }}" class="thm-btn"><span>Gabung Bersama Kami</span></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,6 +133,10 @@
                                                             @endif
                                                             <div class="welcome-one__shape-1"></div>
                                                             <div class="welcome-one__shape-2"></div>
+                                                        </div>
+                                                        <div class="welcome-one__trusted">
+                                                            <p>Kuota Magang</p>
+                                                            <h2 class="odometer" data-count="4890">{{ $counter->student_quota }}</h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,7 +235,7 @@
                                                         <h2 class="section-title__title">{{ $work->work_title }}</h2>
                                                     </div>
                                                     <p class="reasons-one__text-1">{{ $work->work_description }}</p>
-                                                    <a href="" class="thm-btn"><span>Hubungi Kami</span></a>
+                                                    <a href="{{ route('kontak') }}" class="thm-btn"><span>Hubungi Kami</span></a>
                                                     <!-- /.thm-btn -->
                                                 </div>
                                             </div>
@@ -274,7 +278,7 @@
                 </div>
             </div>
         </section>
-        <section class="elementor-section elementor-top-section elementor-element elementor-element-ff1463e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ff1463e" data-element_type="section">
+        {{-- <section class="elementor-section elementor-top-section elementor-element elementor-element-ff1463e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ff1463e" data-element_type="section">
             <div class="elementor-container elementor-column-gap-no">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3f02e4e" data-id="3f02e4e" data-element_type="column">
                     <div class="elementor-widget-wrap elementor-element-populated">
@@ -336,7 +340,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <section class="elementor-section elementor-top-section elementor-element elementor-element-b753f6d elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="b753f6d" data-element_type="section">
             <div class="elementor-container elementor-column-gap-no">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7c56713" data-id="7c56713" data-element_type="column">

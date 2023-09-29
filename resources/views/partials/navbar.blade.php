@@ -7,10 +7,10 @@
                     <a href="#"><img decoding="async" loading="lazy" src="{{ asset('hummatech.png') }}" id="thm-logo" alt="Hummatech"></a>
                 </div>
                 <div class="main-menu-wrapper__social">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ ($sosmed->instagram != null) ? $sosmed->instagram : '#' }}"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ ($sosmed->facebook != null) ? $sosmed->facebook : '#' }}"><i class="fab fa-facebook"></i></a>
+                    <a href="{{ ($sosmed->twitter != null) ? $sosmed->twitter : '#' }}"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ ($sosmed->youtube != null) ? $sosmed->youtube : '#' }}"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="main-menu-wrapper__main-menu">
@@ -26,7 +26,7 @@
                                 <li id="menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-661"><a href="{{ route('pkl') }}" class="{{ (Request::routeIs('pkl')) ? 'text-primary' : ''}}">Magang/PKL</a></li>
                             </ul>
                         </li>
-                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="">Blog</a></li>
+                        {{-- <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="">Blog</a></li> --}}
                         <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('produk') }}" class="{{ (Request::routeIs('produk')) ? 'text-primary fw-bold' : ''}}">Produk</a></li>
                         <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('kontak') }}" class="{{ (Request::routeIs('kontak')) ? 'text-primary fw-bold' : ''}}">Kontak</a></li>
                     </ul>

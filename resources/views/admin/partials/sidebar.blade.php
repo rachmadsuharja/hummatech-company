@@ -33,12 +33,12 @@
                     </ul>
                 </div>
             </li> --}}
-            <li class="nav-item {{ Request::routeIs('news.index') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Request::routeIs('news.index') ? 'active' : '' }}">
                 <a href="{{ route('news.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="tv"></i>
                     <span class="link-title">Berita</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Request::routeIs('appretinceship') ? 'active' : '' }}">
                 <a href="{{ route('appretinceship') }}" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>

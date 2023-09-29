@@ -129,6 +129,9 @@
 
                                     <section class="testimonials-two">
                                         <div class="container">
+                                            <div class="row">
+                                                <h3 class="text-center">Apa Kata Alumni?</h3>
+                                            </div>
                                             <div class="thm-swiper__slider swiper-container"
                                             data-swiper-options='{
                                                 "slidesPerView": 1,

@@ -13,15 +13,172 @@
     @include('admin.partials.topbar')
 
     <div class="page-content">
-
-        <div class="row mb-5">
+        <div class="row">
+            <div class="col-12 col-xl-12 stretch-card">
+                <div class="row flex-grow-1">
+                    <div class="col-md-3 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-title">Sekolah</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateSchoolModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-xl-5">
+                                        <h3 class="mb-1">{{ $counter->school }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="updateSchoolModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jumlah Sekolah</h1>
+                                </div>
+                                <form action="{{ route('counters.school') }}" id="updateSchoolCounter" onsubmit="updateSchoolCounter(event)" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <div class="modal-body">
+                                        <input type="number" class="form-control" value="{{ $counter->school }}" name="school">
+                                        <small>* Sekolah yang mengirimkan siswa/siswi nya ke Perusahaan</small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-2">Universitas</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateUnivModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-xl-5">
+                                        <h3 class="mb-1">{{ $counter->university }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="updateUnivModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jumlah Universitas</h1>
+                                </div>
+                                <form action="{{ route('counters.univ') }}" id="updateUnivCounter" onsubmit="updateUnivCounter(event)" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <div class="modal-body">
+                                        <input type="number" class="form-control" value="{{ $counter->university }}" name="university">
+                                        <small>* Universitas yang mengirimkan mahasiswa/mahasiswi nya ke Perusahaan</small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-2">Alumni Magang</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateAlumnusModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-xl-5">
+                                        <h3 class="mb-1">{{ $counter->alumnus }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="updateAlumnusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jumlah Alumni</h1>
+                                </div>
+                                <form action="{{ route('counters.alumnus') }}" id="updateAlumnusCounter" onsubmit="updateAlumnusCounter(event)" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <div class="modal-body">
+                                        <input type="number" class="form-control" value="{{ $counter->alumnus }}" name="alumnus">
+                                        <small>* Jumlah alumni lulusan Hummasoft</small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-2">Kuota Magang</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateStudentQuotaModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-xl-5">
+                                        <h3 class="mb-1">{{ $counter->student_quota }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="updateStudentQuotaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jumlah Kuota Magang</h1>
+                                </div>
+                                <form action="{{ route('counters.student-quota') }}" id="updateStudentQuotaCounter" onsubmit="updateStudentQuotaCounter(event)" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <div class="modal-body">
+                                        <input type="number" class="form-control" value="{{ $counter->student_quota }}" name="student_quota">
+                                        <small>* Jumlah ketersediaan anak magang</small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="row my-3">
             <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
                 <form action="{{ route('appretinceship') }}" method="GET" class="d-flex">
                     <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
                     <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <div class="row mb-3">
             @forelse ($testimonial as $testimoni)
                 <div class="col-lg-4 col-xl-4 stretch-card mb-3">
@@ -174,6 +331,108 @@
                 }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('updateTestimoni-' + id).submit();
+                }
+            })
+        }
+        function updateSchoolCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateSchoolCounter').submit();
+                }
+            })
+        }
+        function updateUnivCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateUnivCounter').submit();
+                }
+            })
+        }
+        function updateAlumnusCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateAlumnusCounter').submit();
+                }
+            })
+        }
+        function updateStudentQuotaCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateStudentQuotaCounter').submit();
+                }
+            })
+        }
+        function updateIndustrialClassCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateIndustrialClassCounter').submit();
+                }
+            })
+        }
+        function updateIndustrialClassQuotaCounter(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ubah',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateIndustrialClassQuotaCounter').submit();
                 }
             })
         }

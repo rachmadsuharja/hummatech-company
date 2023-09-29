@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Counter;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class AppretinceshipController extends Controller
             });
         })->paginate(6);
         $testimonial->appends(['search' => $search]);
-        return view('admin.apprenticeship.index', compact('admin', 'testimonial'));
+        $counter = Counter::findOrFail(1);
+        return view('admin.apprenticeship.index', compact('admin', 'testimonial', 'counter'));
     }
 
     public function incoming() {

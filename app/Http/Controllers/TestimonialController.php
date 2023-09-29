@@ -77,8 +77,8 @@ class TestimonialController extends Controller
             return back()->withErrors($validated)->withInput();
         }
         $testimoni = Testimonial::findOrFail($id);
-        $profile = $request->file('school_logo');
-        if ($request->hasFile('profile') && $profile->isValid()) {
+        $profile = $request->file('profile');
+        if ($request->hasFile('profile')) {
             $profile_name = $profile->hashName();
             Storage::delete('public/student/'.$testimoni->profile);
             $profile->storeAs('public/student/'.$profile_name);
