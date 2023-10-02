@@ -39,12 +39,12 @@
                                                 <form action="{{ route('company-services.destroy', $service->id) }}" id="deleteServices-{{ $service->id }}" onsubmit="confirmDelete(event, {{ $service->id }})" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="button" class="btn btn-primary btn-sm"><i data-feather="edit" class="icon-sm" data-bs-toggle="modal" data-bs-target="#updateServices-{{ $service->id }}"></i></button>
+                                                    <button type="button" class="btn btn-primary btn-sm"><i data-feather="edit" class="icon-sm" data-bs-toggle="modal" data-bs-target="#editServicess{{ $service->id }}"></i></button>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i data-feather="trash-2" class="icon-sm"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="editServices{{ $service->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
+                                        <div class="modal fade" id="editServicess{{ $service->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

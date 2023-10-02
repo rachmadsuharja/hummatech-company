@@ -126,6 +126,7 @@ class CompanyProfilesController extends Controller
             'whatsapp.regex' => 'Nomor whatsapp tidak valid',
         ]);
 
+
         $sosmed = Sosmed::findOrFail(1);
         $sosmed->update([
             'instagram' => $validated['instagram'],

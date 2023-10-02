@@ -170,9 +170,9 @@
                                 <tbody>
                                     @forelse ($product as $pro)
                                         <tr>
-                                            <td>NobleUI jQuery</td>
-                                            <td>01/01/2022</td>
-                                            <td>26/04/2022</td>
+                                            <td>{{ $pro->product_name }}</td>
+                                            <td>{{ $pro->release_date }}</td>
+                                            <td>{{ $pro->product_desc }}</td>
                                         </tr>
                                     @empty
                                         <tr>

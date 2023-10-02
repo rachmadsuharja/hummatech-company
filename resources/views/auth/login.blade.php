@@ -59,16 +59,19 @@
                                 @csrf
 								<div class="form-group">
 									<label for="email" class="input-label">Email</label>
-									<input type="text" id="email" class="form-control @error('email') is-invalid @enderror"" name="email" placeholder="mail@host.com">
+									<input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="mail@host.com">
 								</div>
                                 @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
 								<div class="form-group">
-									<label for="password" class="input-label">Password</label>
-									<input id="password" type="password" class="form-control" name="password" placeholder="********">
+                                    <label for="password" class="input-label">Password</label>
+									<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="********">
 									<i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
 								</div>
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 								<div class="form-group">
 									<button type="submit" class="fxt-btn-fill">Log in</button>
 								</div>

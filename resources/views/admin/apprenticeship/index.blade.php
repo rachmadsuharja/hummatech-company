@@ -3,7 +3,29 @@
 @section('style')
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css">
+    <style>
+        .profile-photo {
+            width: 6rem;
+            height: 6rem;
+        }
+        @media (max-width: 600px) {
+            .pp-content, .id-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
 
+        @media (min-width: 601px) and (max-width: 992px) {
+            .pp-content, .id-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
 @endsection
 
 @section('container')
@@ -181,18 +203,18 @@
         </div> --}}
         <div class="row mb-3">
             @forelse ($testimonial as $testimoni)
-                <div class="col-lg-4 col-xl-4 stretch-card mb-3">
+                <div class="col-md-6 col-lg-4 col-xl-4 stretch-card mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-2">
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 pp-content">
                                     @if ($testimoni->profile != null)
-                                        <img class="w-100 rounded-circle" src="{{ asset('storage/student/'.$testimoni->profile) }}" alt="">
+                                        <img class="rounded-circle profile-photo" src="{{ asset('storage/student/'.$testimoni->profile) }}" alt="">
                                         @else
-                                        <img class="w-100 rounded-circle" src="{{ asset('empty/profile.jpg') }}" alt="">
+                                        <img class="rounded-circle profile-photo" src="{{ asset('empty/profile.jpg') }}" alt="">
                                     @endif
                                 </div>
-                                <div class="col-lg-8">
+                                <div class="col-lg-8 mt-2 id-content">
                                     <h5 class="mb-2">{{ $testimoni->alumni_name }}</h5>
                                     <h6>{{ $testimoni->school }}</h6>
                                 </div>

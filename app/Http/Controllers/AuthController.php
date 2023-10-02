@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Sosmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,10 +27,15 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') {
-                toastr()->success('Berhasil Login', 'Welcome Admin');
-                return to_route('dashboard');
+        $userExists = User::where('email', $request->email)->exists();
+        if ($userExists) {
+            if (Auth::attempt($credentials)) {
+                if (Auth::user()->role == 'admin') {
+                    toastr()->success('Berhasil Login', 'Welcome Admin');
+                    return to_route('dashboard');
+                }
+            } else {
+                return to_route('login')->withErrors(['password' => 'Password salah'])->withInput()->with('alert-type','error');
             }
         }
         return to_route('login')->withErrors(['email' => 'Akun tidak terdaftar'])->withInput()->with('alert-type', 'error');
