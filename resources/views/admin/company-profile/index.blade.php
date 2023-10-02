@@ -80,7 +80,7 @@
                                     @enderror
                                     <div class="form-group mb-3">
                                         <label for="work_description" class="form-label mb-1">Deskripsi</label>
-                                        <textarea class="form-control @error('work_description') is-invalid @enderror" rows="10" name="work_description" id="work_description" placeholder="Deskripsikan perusahaan anda ...">{{ $work->work_description }}</textarea>
+                                        <textarea class="form-control work-method @error('work_description') is-invalid @enderror" rows="10" name="work_description" id="work_description" placeholder="Deskripsikan perusahaan anda ...">{{ $work->work_description }}</textarea>
                                     </div>
                                     @error('work_description')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -245,6 +245,16 @@
             messages: {
                 'default': '',
             }
+        });
+
+        tinymce.init({
+            selector: '#company_description',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+
+        tinymce.init({
+            selector: '#work_description',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         });
     </script>
 

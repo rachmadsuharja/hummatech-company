@@ -86,7 +86,7 @@ use Carbon\Carbon;
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12 border border-1 rounded">
-                                    <img class="w-100" src="{{ asset('storage/product/'.$pro->product_cover) }}" alt="">
+                                    <img class="w-100 h-100" src="{{ asset('storage/product/'.$pro->product_cover) }}" alt="">
                                 </div>
                             </div>
                             <h5 class="text-center mt-3">{{ $pro->product_name }}</h5>
