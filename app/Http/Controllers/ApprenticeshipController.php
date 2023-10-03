@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AppretinceshipController extends Controller
+class ApprenticeshipController extends Controller
 {
     public function index(Request $request) {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();

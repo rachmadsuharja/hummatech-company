@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AppretinceshipController;
+use App\Http\Controllers\ApprenticeshipController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -43,9 +43,9 @@ Route::middleware('guest')->group(function() {
 // Admin Routes
 Route::middleware('admin')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('incoming-appretinceship', [AppretinceshipController::class, 'incoming'])->name('incoming-appretinceship');
+    Route::get('incoming-apprenticeship', [ApprenticeshipController::class, 'incoming'])->name('incoming-apprenticeship');
     Route::get('incoming-industrial-class', [IndustrialClassController::class, 'incoming'])->name('incoming-industrial-class');
-    Route::get('apprenticeship', [AppretinceshipController::class, 'index'])->name('appretinceship');
+    Route::get('apprenticeship', [ApprenticeshipController::class, 'index'])->name('apprenticeship');
     Route::resource('industrial-class', IndustrialClassController::class);
     Route::resource('news', NewsController::class);
     Route::resource('products', ProductsController::class);

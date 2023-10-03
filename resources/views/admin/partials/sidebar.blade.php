@@ -24,8 +24,8 @@
                 </a>
                 <div class="collapse" id="approvals">
                     <ul class="nav sub-menu">
-                        <li class="nav-item {{ Request::routeIs('incoming-appretinceship') ? 'active' : '' }}">
-                            <a href="{{ route('incoming-appretinceship') }}" class="nav-link">Siswa PKL</a>
+                        <li class="nav-item {{ Request::routeIs('incoming-apprenticeship') ? 'active' : '' }}">
+                            <a href="{{ route('incoming-apprenticeship') }}" class="nav-link">Siswa PKL</a>
                         </li>
                         <li class="nav-item {{ Request::routeIs('incoming-industrial-class') ? 'active' : '' }}">
                             <a href="{{ route('incoming-industrial-class') }}" class="nav-link">Kelas Industri</a>
@@ -39,8 +39,8 @@
                     <span class="link-title">Berita</span>
                 </a>
             </li> --}}
-            <li class="nav-item {{ Request::routeIs('appretinceship') ? 'active' : '' }}">
-                <a href="{{ route('appretinceship') }}" class="nav-link">
+            <li class="nav-item {{ Request::routeIs('apprenticeship') ? 'active' : '' }}">
+                <a href="{{ route('apprenticeship') }}" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">Siswa PKL</span>
                 </a>

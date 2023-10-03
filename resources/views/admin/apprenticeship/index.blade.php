@@ -195,12 +195,71 @@
         </div>
         {{-- <div class="row my-3">
             <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
-                <form action="{{ route('appretinceship') }}" method="GET" class="d-flex">
+                <form action="{{ route('apprenticeship') }}" method="GET" class="d-flex">
                     <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
                     <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
                 </form>
             </div>
         </div> --}}
+        <div class="row mb-2">
+            <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
+                <form action="{{ route('apprenticeship') }}" method="GET" class="d-flex">
+                    <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
+                    <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
+                </form>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTestimonial">Tambah Testimoni</button>
+                <div class="modal fade" id="addTestimonial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addTestimonial" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Produk</h1>
+                            </div>
+                            <form action="{{ route('testimonial.store') }}" enctype="multipart/form-data" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="product_cover" class="form-label mb-1">Foto Cover</label>
+                                            <input type="file" class="form-control @error('product_cover') is-invalid @enderror" id="product_cover" name="product_cover" data-height="120"/>
+                                        </div>
+                                        @error('product_cover')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <div class="col-md-8">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="product_name" class="form-label mb-1">Nama Produk</label>
+                                                <input type="text" class="form-control" name="product_name" value="{{ old('product_name') }}" id="product_name" placeholder="example: Jurnal Mengajar">
+                                            </div>
+                                            @error('product_name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                            <div class="col-md-12 mb-3">
+                                                <label for="release_date" class="form-label mb-1">Tanggal Rilis</label>
+                                                <input type="date" class="form-control" name="release_date" id="release_date">
+                                            </div>
+                                            @error('release_date')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="product_desc" class="form-label mb-1">Deskripsi</label>
+                                        <textarea class="form-control" rows="6" name="product_desc" id="product_desc" placeholder="Tentang produk ini ..."></textarea>
+                                    </div>
+                                    @error('product_desc')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mb-3">
             @forelse ($testimonial as $testimoni)
                 <div class="col-md-6 col-lg-4 col-xl-4 stretch-card mb-3">
