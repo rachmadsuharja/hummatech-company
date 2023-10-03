@@ -60,26 +60,32 @@
                                 <section class="main-slider">
                                     <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true, "effect": "fade", "pagination": { "el": "#main-slider-pagination", "type": "bullets", "clickable": true }, "navigation": { "nextEl": "#main-slider__swiper-button-next", "prevEl": "#main-slider__swiper-button-prev" }, "autoplay": { "delay": 5000 }}'>
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <div class="image-layer" style="background-image: url({{ asset('company/cover1.jpg') }});"></div>
-                                                <div class="image-layer-overlay"></div>
-                                                <div class="main-slider-shape-1"></div>
-                                                <div class="main-slider-shape-2"></div>
-                                                <div class="main-slider-shape-3"></div>
-                                                <div class="main-slider-shape-4"></div>
-                                                <!-- /.image-layer -->
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="main-slider__content">
-                                                                <p>Hummasoft Technology</p>
-                                                                <h2>Konsultasikan Kebutuhan <span class="hummatech-blue">Software</span> Anda</h2>
-                                                                <a href="{{ route('kontak') }}" class="thm-btn"><span>Coba Sekarang</span></a>
+                                            @foreach ($slider as $slide)
+                                                <div class="swiper-slide">
+                                                    @if ($slide->slider_cover == 'cover1.jpg' || $slide->slider_cover == 'cover2.png')
+                                                        <div class="image-layer" style="background-image: url({{ asset('company/'.$slide->slider_cover) }});"></div>
+                                                    @else
+                                                        <div class="image-layer" style="background-image: url({{ asset('storage/welcome/'.$slide->slider_cover) }});"></div>
+                                                    @endif
+                                                    <div class="image-layer-overlay"></div>
+                                                    <div class="main-slider-shape-1"></div>
+                                                    <div class="main-slider-shape-2"></div>
+                                                    <div class="main-slider-shape-3"></div>
+                                                    <div class="main-slider-shape-4"></div>
+                                                    <!-- /.image-layer -->
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="main-slider__content">
+                                                                    <p>Hummasoft Technology</p>
+                                                                    <h2>{{ $slide->slider_title }}</h2>
+                                                                    <a href="{{ route('kontak') }}" class="thm-btn"><span>Coba Sekarang</span></a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
                                             <div class="swiper-slide">
                                                 <div class="image-layer" style="background-image: url({{ asset('company/cover2.png') }});"></div>
                                                 <div class="image-layer-overlay"></div>

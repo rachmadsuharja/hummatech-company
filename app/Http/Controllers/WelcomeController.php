@@ -14,11 +14,13 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\CompanyServices;
 use App\Models\IndustrialClass;
+use App\Models\WelcomeSlider;
 use Illuminate\Support\Facades\Validator;
 
 class WelcomeController extends Controller
 {
     public function index() {
+        $slider = WelcomeSlider::all();
         $company = CompanyProfile::findOrFail(1);
         $services = CompanyServices::all();
         $work = WorkMethod::findOrFail(1);
@@ -26,7 +28,7 @@ class WelcomeController extends Controller
         $other = OtherInfo::findOrFail(1);
         $school = IndustrialClass::all();
         $counter = Counter::findOrFail(1);
-        return view('welcome', compact('company', 'services', 'work', 'other', 'sosmed', 'school','counter'));
+        return view('welcome', compact('slider','company', 'services', 'work', 'other', 'sosmed', 'school','counter'));
     }
 
     public function industrialClass() {

@@ -8,6 +8,7 @@ use App\Models\WorkMethod;
 use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\OtherInfo;
+use App\Models\WelcomeSlider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,11 +20,12 @@ class CompanyProfilesController extends Controller
     public function index()
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
-        $sosmed = Sosmed::findOrFail(1);
+        $slider = WelcomeSlider::paginate(3);
         $company = CompanyProfile::findOrFail(1);
         $work = WorkMethod::findOrFail(1);
+        $sosmed = Sosmed::findOrFail(1);
         $other = OtherInfo::findOrFail(1);
-        return view('admin.company-profile.index', compact('admin', 'company', 'work', 'sosmed', 'other'));
+        return view('admin.company-profile.index', compact('admin', 'slider', 'company', 'work', 'sosmed', 'other'));
     }
 
     public function update(Request $request) {

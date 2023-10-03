@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndustrialClassController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\WelcomeSliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::middleware('admin')->group(function() {
     Route::put('company-profiles/work-method', [CompanyProfilesController::class, 'workUpdate'])->name('work.update');
     Route::put('company-profiles/sosmed', [CompanyProfilesController::class, 'sosmedUpdate'])->name('sosmed.update');
     Route::put('company-profiles/other-info', [CompanyProfilesController::class, 'otherInfoUpdate'])->name('other-info.update');
+    Route::resource('welcome-slider', WelcomeSliderController::class);
     Route::resource('company-services', CompanyServicesController::class);
     Route::resource('core-features', CoreFeaturesController::class);
     Route::resource('testimonial', TestimonialController::class);

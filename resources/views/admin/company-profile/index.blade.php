@@ -3,6 +3,11 @@
 @section('style')
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css">
+    <style>
+        .img-slider {
+            filter: brightness(0.5)
+        }
+    </style>
 
 @endsection
 
@@ -13,6 +18,158 @@
     @include('admin.partials.topbar')
 
     <div class="page-content">
+
+        <div class="row mb-3">
+            <div class="col-md-8 col-lg-8 col-xl-8 stretch-card">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between border-0">
+                        <h6 class="card-title">Welcome Slider</h6>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSlider">Tambah</button>
+                        <div class="modal fade" id="addSlider" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Welcome Slider</h1>
+                                    </div>
+                                    <form action="{{ route('welcome-slider.store') }}" enctype="multipart/form-data" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="form-group mb-3">
+                                                <label for="slider_title" class="form-label">Judul</label>
+                                                <input type="text" class="form-control @error('slider_title') is-invalid @enderror" value="{{ old('slider_title') }}" name="slider_title" id="slider_title" placeholder="example: Jadilah Expert Programmer">
+                                            </div>
+                                            @error('slider_title')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                            <div class="form-group mb-3">
+                                                <label for="slider_cover" class="form-label">Cover</label>
+                                                <input type="file" class="form-control slider_cover @error('slider_cover') is-invalid @enderror" name="slider_cover" id="slider_cover">
+                                            </div>
+                                            @error('slider_cover')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="pt-0">Judul</th>
+                                        <th class="pt-0 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($slider as $slide)
+                                        <tr>
+                                            <td>{{ $slide->slider_title }}</td>
+                                            <form action="{{ route('welcome-slider.destroy', $slide->id) }}" id="deleteSlider{{ $slide->id }}" onsubmit="deleteSlider(event, {{ $slide->id }})" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('delete')
+                                                <td class="d-flex justify-content-evenly align-items-center ">
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#editSlider{{ $slide->id }}" class="btn btn-transparent p-0 m-0 text-primary btn-sm">
+                                                        <i data-feather="edit" class="icon-md"></i>
+                                                    </button>
+                                                    <button type="submit" class="btn btn-transparent p-0 m-0 text-danger btn-sm"><i data-feather="trash-2" class="icon-md"></i></button>
+                                                </td>
+                                            </form>
+                                            <div class="modal fade" id="editSlider{{ $slide->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Welcome Slider</h1>
+                                                        </div>
+                                                        <form action="{{ route('welcome-slider.update', $slide->id) }}" enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('put')
+                                                            <div class="modal-body">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="slider_title" class="form-label">Judul</label>
+                                                                    <input type="text" class="form-control @error('slider_title') is-invalid @enderror" value="{{ $slide->slider_title }}" name="slider_title" id="slider_title" placeholder="example: Jadilah Expert Programmer">
+                                                                </div>
+                                                                @error('slider_title')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                                <div class="form-group mb-3">
+                                                                    <label for="slider_cover" class="form-label">Cover</label>
+                                                                    @if ($slide->slider_cover == 'cover1.jpg' || $slide->slider_cover == 'cover2.png')
+                                                                        <input type="file" class="form-control slider_cover @error('slider_cover') is-invalid @enderror" name="slider_cover" id="slider_cover" data-default-file="{{ asset('company/'.$slide->slider_cover) }}">
+                                                                    @else
+                                                                        <input type="file" class="form-control slider_cover @error('slider_cover') is-invalid @enderror" name="slider_cover" id="slider_cover" data-default-file="{{ asset('storage/welcome/'.$slide->slider_cover) }}">
+                                                                    @endif
+                                                                </div>
+                                                                @error('slider_cover')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center"><small>tidak ada data</small></td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-end">
+                        {{ $slider->links() }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xl-4 stretch-card">
+                <div class="card">
+                    <p class="fw-bold m-2 text-center">Preview</p>
+                    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade mx-3 mb-3" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @forelse ($slider as $slide)
+                            @if ($slide->slider_cover == 'cover1.jpg' || $slide->slider_cover == 'cover2.png')
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('company/'.$slide->slider_cover) }}" class="d-block w-100 img-slider" alt="...">
+                                    <div class="carousel-caption d-md-block">
+                                        <h5>{{ $slide->slider_title }}</h5>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('storage/welcome/'.$slide->slider_cover) }}" class="d-block w-100 img-slider" alt="...">
+                                    <div class="carousel-caption d-md-block">
+                                        <h5>{{ $slide->slider_title }}</h5>
+                                    </div>
+                                </div>
+                            @endif
+                            @empty
+
+                            @endforelse
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row mb-3">
             <div class="col-lg-12 col-xl-12 stretch-card">
@@ -246,6 +403,30 @@
                 'default': '',
             }
         });
+
+        $('.slider_cover').dropify({
+            messages: {
+                'default': '',
+            }
+        });
+
+        function deleteSlider(event, id) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Hapus',
+                text: "Apakah anda yakin ingin menghapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteSlider' + id).submit();
+                }
+            })
+        }
 
         tinymce.init({
             selector: '#company_description',
