@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CompanyServices;
-use App\Models\CoreFeatures;
 use App\Models\User;
+use App\Models\CoreFeatures;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\CompanyServices;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
-        $services = CompanyServices::all();
+        $notification = Notification::where('category', 'inbox')->get();
+        $search = $request->input('search');
+        $services = CompanyServices::query()->when(request()->has('search'), function ($query) {
+            $search = request('search');
+            $query->where(function ($subquery) use ($search) {
+                $subquery->where('services_title', 'like', '%' . $search . '%');
+            });
+        })->paginate(3);
         $core = CoreFeatures::all();
-        return view('admin.company-services.index', compact('admin', 'services', 'core'));
+        return view('admin.company-services.index', compact('admin', 'services', 'core','notification'));
     }
 
     /**
@@ -26,7 +35,7 @@ class CompanyServicesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,7 +43,27 @@ class CompanyServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = Validator::make($request->all(), [
+            'services_title' => 'required|max:50',
+            'services_description' => 'required|max:255'
+        ], [
+            'services_title.required' => 'Judul tidak boleh kosong',
+            'services_title.max' => 'Judul maksimal 50 karakter',
+            'services_description.required' => 'Deskripsi tidak boleh kosong',
+            'services_description.max' => 'Deskripsi maksimal 50 karakter'
+        ]);
+        if ($validated->fails()) {
+            toastr()->error('Gagal menambahkan layanan', 'Failed');
+            return to_route('company-services');
+        }
+
+        CompanyServices::create([
+            'services_title' => $request->services_title,
+            'services_description' => $request->services_description,
+        ]);
+
+        toastr()->success('Berhasil mengubah data', 'Success');
+        return to_route('company-services.index');
     }
 
     /**

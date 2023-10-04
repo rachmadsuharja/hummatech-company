@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-        
+
         /*
          * Application Service Providers...
          */

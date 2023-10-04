@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,8 @@ class NewsController extends Controller
     public function index()
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
-        return view('admin.news.index', compact('admin'));
+        $notification = Notification::where('category', 'inbox')->get();
+        return view('admin.news.index', compact('admin','notification'));
     }
 
     /**

@@ -20,6 +20,88 @@
     @include('admin.partials.topbar')
 
     <div class="page-content">
+        <div class="row">
+            <div class="col-12 col-xl-12 stretch-card">
+                <div class="row flex-grow-1">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-title">Sekolah/Universitas Bergabung</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateIndustrialClassModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                    <div class="modal fade" id="updateIndustrialClassModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sekolah/Universitas Bergabung</h1>
+                                                </div>
+                                                <form action="{{ route('counters.industrial-class') }}" id="updateIndustrialClassCounter" onsubmit="updateIndustrialClassCounter(event)" enctype="multipart/form-data" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="modal-body">
+                                                        <input type="number" class="form-control" value="{{ $counter->industrial_class }}" name="industrial_class">
+                                                        <small>* Jumlah Sekolah atau Universitas yang telah bergabung ke Kelas Industri</small>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7 col-md-12 col-xl-6">
+                                        <h3 class="mb-1">{{ $counter->industrial_class }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-title">Kuota Kelas Industri</h6>
+                                    <h6><button class="btn btn-transparent btn-sm p-0" data-bs-toggle="modal" data-bs-target="#updateIndustrialClassQuotaModal"><i data-feather="plus-circle" class="icon-md"></i></button></h6>
+                                    <div class="modal fade" id="updateIndustrialClassQuotaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kuota Kelas Industri</h1>
+                                                </div>
+                                                <form action="{{ route('counters.industrial-class-quota') }}" id="updateIndustrialClassQuotaCounter" onsubmit="updateIndustrialClassQuotaCounter(event)" enctype="multipart/form-data" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="modal-body">
+                                                        <input type="number" class="form-control" value="{{ $counter->industrial_class_quota }}" name="industrial_class_quota">
+                                                        <small>* Jumlah Kuota yang tersisa untuk Kelas Industri</small>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7 col-md-12 col-xl-6">
+                                        <h3 class="mb-1">{{ $counter->industrial_class_quota }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row mb-5">
             <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
@@ -27,19 +109,19 @@
                     <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
                     <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
                 </form>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool">Tambah Sekolah</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool">Tambah</button>
                 <div class="modal fade" id="addSchool" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addSchool" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Sekolah</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Sekolah/Universitas</h1>
                             </div>
                             <form action="{{ route('industrial-class.store') }}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="school_logo" class="form-label mb-1">Logo Sekolah</label>
+                                            <label for="school_logo" class="form-label mb-1">Logo</label>
                                             <input type="file" class="form-control @error('school_logo') is-invalid @enderror" id="school_logo" name="school_logo" data-height="120"/>
                                         </div>
                                         @error('school_logo')
@@ -47,7 +129,7 @@
                                         @enderror
                                         <div class="col-md-8">
                                             <div class="col-md-12 mb-3">
-                                                <label for="school_name" class="form-label mb-1">Nama Sekolah</label>
+                                                <label for="school_name" class="form-label mb-1">Nama</label>
                                                 <input type="text" class="form-control" name="school_name" value="{{ old('school_name') }}" id="school_name" placeholder="example: SMKN 1 Indonesia">
                                             </div>
                                             @error('school_name')
@@ -63,7 +145,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="school_address" class="form-label mb-1">Alamat Sekolah</label>
+                                        <label for="school_address" class="form-label mb-1">Alamat</label>
                                         <textarea class="form-control" rows="6" name="school_address" id="school_address" placeholder="Alamat sekolah ..."></textarea>
                                     </div>
                                     @error('school_address')

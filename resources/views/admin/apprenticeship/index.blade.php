@@ -193,66 +193,60 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="row my-3">
-            <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
+        <div class="row justify-content-between mb-3">
+            <div class="col-md-4 col-lg-4 col-xl-4 stretch-card">
                 <form action="{{ route('apprenticeship') }}" method="GET" class="d-flex">
                     <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
                     <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
                 </form>
             </div>
-        </div> --}}
-        <div class="row mb-2">
-            <div class="col-lg-12 col-xl-12 stretch-card justify-content-between">
-                <form action="{{ route('apprenticeship') }}" method="GET" class="d-flex">
-                    <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
-                    <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
-                </form>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTestimonial">Tambah Testimoni</button>
+            <div class="col-md-2 col-lg-2 col-xl-2">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addTestimonial">Tambah Testimoni</button>
                 <div class="modal fade" id="addTestimonial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addTestimonial" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Produk</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Testimoni</h1>
                             </div>
                             <form action="{{ route('testimonial.store') }}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="product_cover" class="form-label mb-1">Foto Cover</label>
-                                            <input type="file" class="form-control @error('product_cover') is-invalid @enderror" id="product_cover" name="product_cover" data-height="120"/>
+                                            <label for="up_profile" class="form-label mb-1">Foto Profil</label>
+                                            <input type="file" class="form-control profile @error('profile') is-invalid @enderror" value="{{ old('profile') }}" id="profile" name="profile" data-height="120"/>
                                         </div>
-                                        @error('product_cover')
+                                        @error('profile')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                         <div class="col-md-8">
                                             <div class="col-md-12 mb-3">
-                                                <label for="product_name" class="form-label mb-1">Nama Produk</label>
-                                                <input type="text" class="form-control" name="product_name" value="{{ old('product_name') }}" id="product_name" placeholder="example: Jurnal Mengajar">
+                                                <label for="alumni_name" class="form-label mb-1">Nama Alumni</label>
+                                                <input type="text" class="form-control" name="alumni_name" value="{{ old('alumni_name') }}" id="alumni_name" placeholder="Nama Alumni ...">
                                             </div>
-                                            @error('product_name')
+                                            @error('alumni_name')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                             <div class="col-md-12 mb-3">
-                                                <label for="release_date" class="form-label mb-1">Tanggal Rilis</label>
-                                                <input type="date" class="form-control" name="release_date" id="release_date">
+                                                <label for="school" class="form-label mb-1">Asal Sekolah</label>
+                                                <input type="text" class="form-control" name="school" value="{{ old('school') }}" id="school" placeholder="example: SMKN 1 Indonesia">
                                             </div>
-                                            @error('release_date')
+                                            @error('school')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="product_desc" class="form-label mb-1">Deskripsi</label>
-                                        <textarea class="form-control" rows="6" name="product_desc" id="product_desc" placeholder="Tentang produk ini ..."></textarea>
+                                        <label for="words" class="form-label mb-1">Testimoni</label>
+                                        <textarea class="form-control" rows="6" name="words" id="words" placeholder="Alamat sekolah ...">{{ old('words') }}</textarea>
                                     </div>
-                                    @error('product_desc')
+                                    @error('words')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -266,14 +260,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-2">
-                                <div class="col-lg-4 pp-content">
+                                <div class="col-lg-5 pp-content">
                                     @if ($testimoni->profile != null)
                                         <img class="rounded-circle profile-photo" src="{{ asset('storage/student/'.$testimoni->profile) }}" alt="">
                                         @else
                                         <img class="rounded-circle profile-photo" src="{{ asset('empty/profile.jpg') }}" alt="">
                                     @endif
                                 </div>
-                                <div class="col-lg-8 mt-2 id-content">
+                                <div class="col-lg-7 mt-2 id-content">
                                     <h5 class="mb-2">{{ $testimoni->alumni_name }}</h5>
                                     <h6>{{ $testimoni->school }}</h6>
                                 </div>

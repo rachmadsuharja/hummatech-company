@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sosmed;
 use App\Models\Product;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,7 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $notification = Notification::where('category', 'inbox')->get();
         $search = $request->input('search');
         $product = Product::query()->when(request()->has('search'), function ($query) {
             $search = request('search');
@@ -27,7 +29,7 @@ class ProductsController extends Controller
         })->paginate(8);
         $product->appends(['search' => $search]);
         $sosmed = Sosmed::findOrFail(1);
-        return view('admin.products.index', compact('admin','product', 'sosmed'));
+        return view('admin.products.index', compact('admin','product', 'sosmed','notification'));
     }
 
     /**

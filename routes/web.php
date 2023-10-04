@@ -42,6 +42,9 @@ Route::middleware('guest')->group(function() {
 
 // Admin Routes
 Route::middleware('admin')->group(function() {
+    Route::get('redirect/{id}', [DashboardController::class, 'redirect'])->name('redirecto');
+    Route::delete('read-inbox', [DashboardController::class, 'readAllInbox'])->name('read-inbox');
+    Route::put('profile/{id}', [AuthController::class, 'updateProfile'])->name('profile.update');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('incoming-apprenticeship', [ApprenticeshipController::class, 'incoming'])->name('incoming-apprenticeship');
     Route::get('incoming-industrial-class', [IndustrialClassController::class, 'incoming'])->name('incoming-industrial-class');

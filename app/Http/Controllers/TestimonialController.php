@@ -30,7 +30,42 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = Validator::make($request->all(), [
+            'profile' => 'required|mimes:png,jpg,jpeg',
+            'alumni_name' => 'required|min:3|max:100|unique:testimonials,alumni_name',
+            'school' => 'required|min:5|max:100',
+            'words' => 'required|min:5|max:1000',
+        ], [
+            'profile.required' => 'Foto tidak boleh kosong',
+            'profile.mimes' => 'Format foto tidak valid',
+            'alumni_name.required' => 'Nama tidak boleh kosong',
+            'alumni_name.min' => 'Nama terlalu pendek',
+            'alumni_name.max' => 'Nama maksimal 100 karakter',
+            'alumni_name.unique' => 'Alumni sudah masuk list',
+            'words.required' => 'Kata testimoni tidak boleh kosong',
+            'school.required' => 'Sekolah tidak boleh kosong',
+            'school.min' => 'Nama sekolah terlalu pendek',
+            'school.max' => 'Nama sekolah maksimal 100 karakter',
+            'words.min' => 'Kata testimoni terlalu pendek',
+            'words.max' => 'Kata testimoni maksimal 1000 karakter',
+        ]);
+        if ($validated->fails()) {
+            toastr()->error('Gagal menambahkan testimoni', 'Failed');
+            return back()->withErrors($validated)->withInput();
+        }
+
+        $profile = $request->file('profile');
+        $profile_name = $profile->hashName();
+        $profile->storeAs('public/student/'.$profile_name);
+
+        Testimonial::create([
+            'profile' => $profile_name,
+            'alumni_name' => $request->alumni_name,
+            'school' => $request->school,
+            'words' => $request->words,
+        ]);
+        toastr()->success('Berhasil menambahkan testimoni', 'Success');
+        return back();
     }
 
     /**
@@ -106,6 +141,6 @@ class TestimonialController extends Controller
         $testi->delete();
 
         toastr()->success('Berhasil menghapus data', 'Success');
-        return back();
+        return to_route('apprenticeship');
     }
 }

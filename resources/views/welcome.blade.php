@@ -86,26 +86,6 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <div class="swiper-slide">
-                                                <div class="image-layer" style="background-image: url({{ asset('company/cover2.png') }});"></div>
-                                                <div class="image-layer-overlay"></div>
-                                                <div class="main-slider-shape-1"></div>
-                                                <div class="main-slider-shape-2"></div>
-                                                <div class="main-slider-shape-3"></div>
-                                                <div class="main-slider-shape-4"></div>
-                                                <!-- /.image-layer -->
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="main-slider__content">
-                                                                <p>Hummasoft Technology</p>
-                                                                <h2>Jadilah <span class="hummatech-blue">Expert</span> Programmer</h2>
-                                                                <a href="{{ route('kontak') }}" class="thm-btn"><span>Gabung Bersama Kami</span></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </section>

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\CompanyServices;
 use App\Models\IndustrialClass;
+use App\Models\Notification;
 use App\Models\WelcomeSlider;
 use Illuminate\Support\Facades\Validator;
 
@@ -101,6 +102,12 @@ class WelcomeController extends Controller
             'phone' => $request->phone,
             'subject' => $request->subject,
             'message' => $request->message,
+        ]);
+
+        Notification::create([
+            'title' => $request->name,
+            'sub_title' => $request->subject,
+            'category' => 'inbox',
         ]);
         toastr()->success('Berhasil mengirim pesan', 'Success');
         return back();

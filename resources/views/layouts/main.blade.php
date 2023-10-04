@@ -797,7 +797,7 @@
     };
 </script>
 <script src='{{ asset('moniz/wp-content/plugins/contact-form-7/includes/js/index41a3.js?ver=5.8') }}' id='contact-form-7-js'></script>
-<script src='{{ asset('moniz/cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min7904.js?ver=1695459946') }}' id='js-cookie-js'></script>\
+<script src='{{ asset('moniz/cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min7904.js?ver=1695459946') }}' id='js-cookie-js'></script>
 <script src='{{ asset('moniz/wp-content/plugins/layerdrops-toolbar/assets/js/lang7904.js?ver=1695459946') }}' id='layerdrops-toolbar-lang-js'></script>
 <script src='{{ asset('moniz/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min116b.js?ver=2.7.0-wc.8.0.3') }}' id='jquery-blockui-js'></script>
 <script id='wc-add-to-cart-js-extra'>

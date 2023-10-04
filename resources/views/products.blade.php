@@ -59,7 +59,7 @@ use Carbon\Carbon;
                                                 </div>
                                             </div>
                                         @empty
-                                            <div class="col-lg-12 col-xl-12 mt-5 d-flex flex-column justify-content-center align-items-center">
+                                            <div class="col-lg-12 col-xl-12 mb-5 d-flex flex-column justify-content-center align-items-center">
                                                 <img src="{{ asset('empty/empty.png') }}" alt="">
                                                 <small>Tidak ada data</small>
                                             </div>
@@ -77,7 +77,6 @@ use Carbon\Carbon;
         </div>
     </section>
 
-    @include('partials.footer')
 @endsection
 
 @section('script')

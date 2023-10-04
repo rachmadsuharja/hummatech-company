@@ -20,6 +20,35 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline mb-4">
                             <h6 class="card-title mb-0">Layanan Perusahaan</h6>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addServices">
+                                <i data-feather="plus-circle" class="icon-md"></i>
+                            </button>
+                            <div class="modal fade" id="addServices" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addServices" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Layanan</h1>
+                                        </div>
+                                        <form action="{{ route('company-services.store') }}" method="post">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group mb-3">
+                                                    <label for="services_title" class="form-label mb-1">Fitur</label>
+                                                    <input type="text" class="form-control" name="services_title" value="{{ old('services_title') }}" id="services_title" placeholder="example: Web Development">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="services_description" class="form-label mb-1">Deskripsi</label>
+                                                    <textarea class="form-control" name="services_description" id="services_description" rows="5" placeholder="Deskripsikan layanan Anda ...">{{ old('services_description') }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
@@ -58,6 +87,10 @@
                                                                 <label for="services_title" class="form-label mb-1">Fitur</label>
                                                                 <input type="text" class="form-control" name="services_title" value="{{ $service->services_title }}" id="services_title" placeholder="example: Web Development">
                                                             </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="services_description" class="form-label mb-1">Deskripsi</label>
+                                                                <textarea class="form-control" name="services_description" id="services_description" rows="5" placeholder="Deskripsikan layanan Anda ...">{{ $service->services_description }}</textarea>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
@@ -72,6 +105,9 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card-footer d-flex justify-content-end border-0 py-0 bg-white px-3">
+                        {{ $services->links() }}
+                    </div>
                 </div>
             </div>
         </div> <!-- row -->
@@ -81,7 +117,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline mb-4">
                             <h6 class="card-title mb-0">Kelas Industri (Core Features)</h6>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#addCoreFeatures" class="btn btn-primary p-2 btn-sm"><i data-feather="plus-circle" class="icon-md"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#addCoreFeatures" class="btn btn-primary btn-sm"><i data-feather="plus-circle" class="icon-md"></i></button>
                             <div class="modal fade" id="addCoreFeatures" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">

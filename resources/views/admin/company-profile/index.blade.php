@@ -100,6 +100,16 @@
                                                                 @enderror
                                                                 <div class="form-group mb-3">
                                                                     <label for="slider_cover" class="form-label">Cover</label>
+                                                                    {{-- <input type="file" class="form-control" name="slider_cover" id="slider_cover">
+                                                                    @if ($slide->slider_cover == 'cover1.jpg' || $slide->slider_cover == 'cover2.png')
+                                                                        <div class="row justify-content-between p-3">
+                                                                            <img src="{{ asset('company/'.$slide->slider_cover) }}" class="w-100" alt="">
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="row justify-content-between p-3">
+                                                                            <img src="{{ asset('storage/welcome/'.$slide->slider_cover) }}" class="w-100" alt="">
+                                                                        </div>
+                                                                    @endif --}}
                                                                     @if ($slide->slider_cover == 'cover1.jpg' || $slide->slider_cover == 'cover2.png')
                                                                         <input type="file" class="form-control slider_cover @error('slider_cover') is-invalid @enderror" name="slider_cover" id="slider_cover" data-default-file="{{ asset('company/'.$slide->slider_cover) }}">
                                                                     @else

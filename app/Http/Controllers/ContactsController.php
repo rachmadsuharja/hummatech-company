@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ReplyContacts;
 use App\Models\User;
 use App\Models\Inbox;
+use App\Mail\ReplyContacts;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -13,6 +14,7 @@ class ContactsController extends Controller
 {
     public function index(Request $request) {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $notification = Notification::where('category', 'inbox')->get();
         $search = $request->input('search');
         $inbox = Inbox::query()->when(request()->has('search'), function ($query) {
             $search = request('search');
@@ -21,7 +23,7 @@ class ContactsController extends Controller
             });
         })->paginate(6);
         $inbox->appends(['search' => $search]);
-        return view('admin.inbox', compact('admin','inbox'));
+        return view('admin.inbox', compact('admin','inbox','notification'));
     }
 
     public function reply(Request $request, string $id) {

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Sosmed;
-use App\Models\WorkMethod;
-use Illuminate\Http\Request;
-use App\Models\CompanyProfile;
 use App\Models\OtherInfo;
+use App\Models\WorkMethod;
+use App\Models\Notification;
+use Illuminate\Http\Request;
 use App\Models\WelcomeSlider;
+use App\Models\CompanyProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,12 +21,13 @@ class CompanyProfilesController extends Controller
     public function index()
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $notification = Notification::where('category', 'inbox')->get();
         $slider = WelcomeSlider::paginate(3);
         $company = CompanyProfile::findOrFail(1);
         $work = WorkMethod::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
         $other = OtherInfo::findOrFail(1);
-        return view('admin.company-profile.index', compact('admin', 'slider', 'company', 'work', 'sosmed', 'other'));
+        return view('admin.company-profile.index', compact('admin', 'notification', 'slider', 'company', 'work', 'sosmed', 'other'));
     }
 
     public function update(Request $request) {

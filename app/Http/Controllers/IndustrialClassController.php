@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\CoreFeatures;
+use App\Models\Counter;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\IndustrialClass;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +17,7 @@ class IndustrialClassController extends Controller
 {
     public function index(Request $request) {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $counter = Counter::findOrFail(1);
         $search = $request->input('search');
         $school = IndustrialClass::query()->when(request()->has('search'), function ($query) {
             $search = request('search');
@@ -22,9 +25,10 @@ class IndustrialClassController extends Controller
                 $subquery->where('school_name', 'like', '%' . $search . '%');
             });
         })->paginate(8);
+        $notification = Notification::where('category', 'inbox')->get();
         $school->appends(['search' => $search]);
         $core = CoreFeatures::all();
-        return view('admin.industrial-class.index', compact('admin', 'school','core'));
+        return view('admin.industrial-class.index', compact('admin','counter','school','core','notification'));
     }
 
     public function create()
