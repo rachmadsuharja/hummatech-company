@@ -26,7 +26,13 @@
                                 <li id="menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-661"><a href="{{ route('pkl') }}" class="{{ (Request::routeIs('pkl')) ? 'text-primary' : ''}}">Magang/PKL</a></li>
                             </ul>
                         </li>
-                        {{-- <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="">Blog</a></li> --}}
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="#"  class="{{ (Request::routeIs('kelas-industri','pkl')) ? 'text-primary fw-bold' : ''}}">Blog</a>
+                            <ul class="sub-menu">
+                                @foreach ($categories as $category)
+                                    <li id="menu-item-279" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-279"><a href="{{ route('kelas-industri') }}" class="{{ (Request::routeIs('kelas-industri')) ? 'text-primary' : ''}}">{{ $category->category }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('produk') }}" class="{{ (Request::routeIs('produk')) ? 'text-primary fw-bold' : ''}}">Produk</a></li>
                         <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('kontak') }}" class="{{ (Request::routeIs('kontak')) ? 'text-primary fw-bold' : ''}}">Kontak</a></li>
                     </ul>
@@ -49,14 +55,15 @@
         <span class="mobile-nav__close mobile-nav__toggler"></span>
         <div class="logo-box">
             <a href="index.html">
-                <img decoding="async" loading="lazy" width="134" height="34" src="{{ asset('moniz/wp-content/uploads/2021/07/logo-light.png') }}" id="mobile-thm-logo" alt="Moniz">
+                <img decoding="async" loading="lazy" width="134" height="34" src="{{ asset('hummatech.png') }}" id="mobile-thm-logo" alt="Moniz">
             </a>
         </div>
         <!-- /.logo-box -->
         <div class="mobile-nav__container"></div>
         <!-- /.mobile-nav__container -->
         <div class="mobile-nav__text">
-            Moniz is a modern creative multipurpose web design agency WordPress Theme. Which fits for all agencies whether you are a web agency, freelancer, web design company. </div>
+            Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology)
+        </div>
         <!-- /.mobile-nav__text -->
         <div class="mobile-nav__top">
             <div class="mobile-nav__social">

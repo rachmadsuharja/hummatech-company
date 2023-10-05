@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\CompanyServices;
 use App\Models\IndustrialClass;
+use App\Models\NewsCategory;
 use App\Models\Notification;
 use App\Models\WelcomeSlider;
 use Illuminate\Support\Facades\Validator;
@@ -29,32 +30,37 @@ class WelcomeController extends Controller
         $other = OtherInfo::findOrFail(1);
         $school = IndustrialClass::all();
         $counter = Counter::findOrFail(1);
-        return view('welcome', compact('slider','company', 'services', 'work', 'other', 'sosmed', 'school','counter'));
+        $categories = NewsCategory::all();
+        return view('welcome', compact('slider','company', 'services', 'work', 'other', 'sosmed', 'school','counter', 'categories'));
     }
 
     public function industrialClass() {
         $other = OtherInfo::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
         $core = CoreFeatures::all();
-        return view('industrial-class', compact('sosmed','other','core'));
+        $categories = NewsCategory::all();
+        return view('industrial-class', compact('sosmed','other','core','categories'));
     }
 
     public function apprenticeship() {
         $other = OtherInfo::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
         $testimonial = Testimonial::all();
-        return view('apprenticeship', compact('sosmed','other', 'testimonial'));
+        $categories = NewsCategory::all();
+        return view('apprenticeship', compact('sosmed','other', 'testimonial','categories'));
     }
 
     public function product() {
         $product = Product::all();
         $other = OtherInfo::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
-        return view('products', compact('product', 'sosmed','other'));
+        $categories = NewsCategory::all();
+        return view('products', compact('product', 'sosmed','other','categories'));
     }
 
     public function blog() {
         $sosmed = Sosmed::findOrFail(1);
+        $categories = NewsCategory::all();
         $other = OtherInfo::findOrFail(1);
 
     }
@@ -62,7 +68,8 @@ class WelcomeController extends Controller
     public function contact() {
         $other = OtherInfo::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
-        return view('contact-us', compact('sosmed','other'));
+        $categories = NewsCategory::all();
+        return view('contact-us', compact('sosmed','other','categories'));
     }
 
     public function send(Request $request) {

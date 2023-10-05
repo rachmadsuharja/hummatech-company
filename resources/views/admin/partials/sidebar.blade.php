@@ -7,6 +7,7 @@
         <span></span>
         </div>
     </div>
+
     <div class="sidebar-body">
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
@@ -33,12 +34,12 @@
                     </ul>
                 </div>
             </li> --}}
-            {{-- <li class="nav-item {{ Request::routeIs('news.index') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::routeIs('news.index','news.create','news.edit') ? 'active' : '' }}">
                 <a href="{{ route('news.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="tv"></i>
                     <span class="link-title">Berita</span>
                 </a>
-            </li> --}}
+            </li>
             <li class="nav-item {{ Request::routeIs('apprenticeship') ? 'active' : '' }}">
                 <a href="{{ route('apprenticeship') }}" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApprenticeshipController;
+use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -51,6 +52,7 @@ Route::middleware('admin')->group(function() {
     Route::get('apprenticeship', [ApprenticeshipController::class, 'index'])->name('apprenticeship');
     Route::resource('industrial-class', IndustrialClassController::class);
     Route::resource('news', NewsController::class);
+    Route::resource('news-categories', NewsCategoryController::class);
     Route::resource('products', ProductsController::class);
     Route::get('inbox', [ContactsController::class, 'index'])->name('inbox');
     Route::put('reply/{id}', [ContactsController::class, 'reply'])->name('reply');

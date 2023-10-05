@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+use App\Models\NewsCategory;
 use App\Models\User;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -12,11 +14,20 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
         $notification = Notification::where('category', 'inbox')->get();
-        return view('admin.news.index', compact('admin','notification'));
+        $categories = NewsCategory::limit(3)->get();
+        $search = $request->input('search');
+        $news = News::query()->when(request()->has('search'), function ($query) {
+            $search = request('search');
+            $query->where(function ($subquery) use ($search) {
+                $subquery->where('subject', 'like', '%' . $search . '%');
+            });
+        })->paginate(20);
+        $news->appends(['search' => $search]);
+        return view('admin.news.index', compact('admin','notification', 'categories', 'news'));
     }
 
     /**
@@ -24,7 +35,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $notification = Notification::where('category', 'inbox')->get();
+        return view('admin.news.create', compact('admin','notification'));
     }
 
     /**

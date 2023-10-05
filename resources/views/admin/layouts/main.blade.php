@@ -56,7 +56,7 @@
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="{{ asset('noble/vendors/feather-icons/feather.min.js') }}"></script>
-<script src="{{ ('noble/js/template.js') }}"></script>
+<script src="{{ asset('noble/js/template.js') }}"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="{{ asset('noble/js/dashboard-light.js') }}"></script>

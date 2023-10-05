@@ -5299,7 +5299,7 @@ div.tox .wizard>.actions .btn-group-vertical>a~.tox-button {
     float: left;
     padding-right: var(--bs-breadcrumb-item-padding-x);
     color: var(--bs-breadcrumb-divider-color);
-    content: var(--bs-breadcrumb-divider, "https://www.nobleui.com/")
+    content: var(--bs-breadcrumb-divider, "/")
 }
 
 .breadcrumb-item.active {
