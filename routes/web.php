@@ -31,7 +31,8 @@ use App\Http\Controllers\WelcomeSliderController;
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('kelas-industri', [WelcomeController::class, 'industrialClass'])->name('kelas-industri');
 Route::get('pkl', [WelcomeController::class, 'apprenticeship'])->name('pkl');
-Route::get('blog', [WelcomeController::class, 'blog'])->name('blog');
+// Route::get('blog', [WelcomeController::class, 'blog'])->name('blog');
+Route::get('blog/categories/{slug}', [WelcomeController::class, 'blog'])->name('blog');
 Route::get('produk', [WelcomeController::class, 'product'])->name('produk');
 Route::get('kontak', [WelcomeController::class, 'contact'])->name('kontak');
 Route::post('kontak/send', [WelcomeController::class, 'send'])->name('inbox.send');
@@ -51,7 +52,7 @@ Route::middleware('admin')->group(function() {
     Route::get('incoming-industrial-class', [IndustrialClassController::class, 'incoming'])->name('incoming-industrial-class');
     Route::get('apprenticeship', [ApprenticeshipController::class, 'index'])->name('apprenticeship');
     Route::resource('industrial-class', IndustrialClassController::class);
-    Route::resource('news', NewsController::class);
+    Route::resource('news', NewsController::class)->parameters(['news' => 'slug']);
     Route::resource('news-categories', NewsCategoryController::class);
     Route::resource('products', ProductsController::class);
     Route::get('inbox', [ContactsController::class, 'index'])->name('inbox');

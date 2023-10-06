@@ -146,7 +146,7 @@
                                         <a href="{{ route('news.create') }}" class="btn btn-primary">Buat Postingan</a>
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 p-0 m-0">
-                                        <form action="{{ route('news-categories.index') }}" method="GET" class="d-flex">
+                                        <form action="{{ route('news.index') }}" method="GET" class="d-flex">
                                             <input type="search" class="form-control rounded-l-full" name="search" id="search" value="{{ request('search') }}" placeholder="Cari ...">
                                             <button type="submit" class="btn btn-primary"><i data-feather="search" class="icon-sm fw-bold"></i></button>
                                         </form>
@@ -159,7 +159,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="pt-0">Judul</th>
-                                                <th class="pt-0">Tanggal</th>
+                                                <th class="pt-0">Jam/Tanggal</th>
                                                 <th class="pt-0">Kategori</th>
                                                 <th class="pt-0 col-lg-1 col-xl-1 text-center">Aksi</th>
                                             </tr>
@@ -168,19 +168,13 @@
                                             @forelse ($news as $n)
                                                 <tr>
                                                     <td>{{ $n->subject }}</td>
-                                                    <td>{{ $n->created_at }}</td>
-                                                    <td>{{ $n->category }}</td>
-                                                    <td><button class="btn btn-transparent btn-sm" data-bs-toggle="modal" data-bs-target="#replyMessages{{ $n->id }}"><i data-feather="send" class="icon-md text-primary"></i></button></td>
+                                                    <td>{{ Carbon::parse($n->created_at)->locale('id')->isoFormat('HH:MM, DD MMM YYYY') }}</td>
+                                                    <td>{{ $n->category->pluck('category')->implode(', ') }}</td>
+                                                    <td class="d-flex">
+                                                        <a href="{{ route('news.edit', ['slug' => $n->slug]) }}" class="btn btn-transparent text-primary"><i class="icon-md" data-feather="edit"></i></a>
+                                                        <a href="{{ route('news.destroy', ['slug' => $n->slug]) }}" class="btn btn-transparent text-danger"><i class="icon-md" data-feather="trash-2"></i></a>
+                                                    </td>
                                                 </tr>
-                                                <div class="modal fade" id="replyMessages{{ $n->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Balas Pesan</h1>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @empty
                                                 <td class="text-center" colspan="5"><small>tidak ada data</small></td>
                                             @endforelse

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Models\NewsCategory;
 use App\Models\User;
+use Illuminate\Support\Str;
+use App\Models\NewsCategory;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
@@ -37,7 +39,8 @@ class NewsController extends Controller
     {
         $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
         $notification = Notification::where('category', 'inbox')->get();
-        return view('admin.news.create', compact('admin','notification'));
+        $categories = NewsCategory::all();
+        return view('admin.news.create', compact('admin','notification', 'categories'));
     }
 
     /**
@@ -45,7 +48,42 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = Validator::make($request->all(), [
+            // 'photo' => 'required|mimes:png,jpg,jpeg',
+            'subject' => 'required|min:5|max:255|unique:news,subject',
+            'category_id' => 'required',
+            'news_content' => 'required|min:3|max:5000',
+        ], [
+            'subject.required' => 'Judul tidak boleh kosong',
+            'subject.min' => 'Judul terlalu pendek',
+            'subject.max' => 'Judul terlalu panjang',
+            'subject.unique' => 'Berita sudah terdaftar',
+            'photo.mimes' => 'Foto tidak valid',
+            'photo.required' => 'Foto tidak boleh kosong',
+            'category_id.required' => 'Pilih minimal 1 kategori',
+            'news_content.required' => 'Konten berita tidak boleh kosong',
+            'news_content.min' => 'Konten berita terlalu pendek',
+            'news_content.max' => 'Konten berita terlalu panjang',
+        ]);
+        if ($validated->fails()) {
+            toastr()->error('Gagal menambahkan berita', 'Failed');
+            return back()->withErrors($validated)->withInput();
+        }
+        $photo = $request->file('photo');
+        $photo_name = $photo->hashName();
+        $photo->storeAs('public/news/'.$photo_name);
+        $categories = $request->category_id;
+        $slug = Str::slug($request->subject);
+        $news = News::create([
+            'subject' => $request->subject,
+            'slug' => $slug,
+            'news_content' => $request->news_content,
+            'photo' => $photo_name,
+        ]);
+        $news->category()->attach($categories);
+
+        toastr()->success('Berhasil membuat postingan', 'Success');
+        return to_route('news.index');
     }
 
     /**
@@ -59,9 +97,13 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $news = News::where('slug', $slug)->first();
+        $admin = User::where('role', 'admin')->where('id', Auth::id())->first();
+        $notification = Notification::where('category', 'inbox')->get();
+        $categories = NewsCategory::all();
+        return view('admin.news.edit', compact('admin','notification', 'categories', 'news'));
     }
 
     /**
@@ -69,14 +111,18 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('admin.news.edit');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(News $news)
     {
-        //
+        $newss = News::findOrFail($news);
+        $newss->delete();
+
+        toastr()->success('Berhasil menghapus data', 'Success');
+        return to_route('news.index');
     }
 }

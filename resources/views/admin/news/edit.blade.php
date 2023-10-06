@@ -25,30 +25,31 @@ use Carbon\Carbon;
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('news.index') }}">Berita</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Buat Postingan</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Postingan</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="m-3">Buat Postingan</h5>
+                        <h5 class="m-3">Edit Postingan</h5>
                     </div>
-                    <form action="{{ route('news.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('news.update', $news->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-lg-7 col-xl-7">
                                     <div class="form-group mb-3">
                                         <label for="subject" class="form-label mb-1">Topik</label>
-                                        <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" id="subject" value="{{ old('subject') }}" placeholder="Topik untuk berita ini ...">
+                                        <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" id="subject" value="{{ $news->subject }}" placeholder="Topik untuk berita ini ...">
                                     </div>
                                     @error('subject')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="form-group mb-3">
                                         <label for="news_content" class="form-label mb-1">Isi Berita</label>
-                                        <textarea name="news_content" id="news_content" class="form-control @error('news_content') is-invalid @enderror" rows="6" placeholder="Apa yang sedang Anda pikirkan ...">{{ old('news_content') }}</textarea>
+                                        <textarea name="news_content" id="news_content" class="form-control @error('news_content') is-invalid @enderror" rows="6" placeholder="Apa yang sedang Anda pikirkan ...">{{ $news->news_content }}</textarea>
                                     </div>
                                     @error('news_content')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -68,7 +69,7 @@ use Carbon\Carbon;
                                     @enderror
                                     <div class="form-group mb-3">
                                         <label for="photo" class="form-label mb-1">Foto</label>
-                                        <input type="file" class="form-control photo @error('photo') id-invalid @enderror" name="photo" id="photo">
+                                        <input type="file" class="form-control photo @error('photo') id-invalid @enderror" name="photo" id="photo" data-default-file="{{ asset('storage/news/'.$news->photo) }}">
                                     </div>
                                     @error('photo')
                                         <div class="alert alert-danger">{{ $message }}</div>

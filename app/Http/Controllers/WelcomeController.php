@@ -58,11 +58,11 @@ class WelcomeController extends Controller
         return view('products', compact('product', 'sosmed','other','categories'));
     }
 
-    public function blog() {
+    public function blog($slug) {
         $sosmed = Sosmed::findOrFail(1);
         $categories = NewsCategory::all();
         $other = OtherInfo::findOrFail(1);
-
+        return view('');
     }
 
     public function contact() {

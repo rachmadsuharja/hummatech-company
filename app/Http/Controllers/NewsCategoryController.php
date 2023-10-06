@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\NewsCategory;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -61,6 +62,7 @@ class NewsCategoryController extends Controller
 
         NewsCategory::create([
             'category' => $request->category,
+            'slug' => Str::slug($request->category),
             'sub_category' => $request->sub_category,
         ]);
 
@@ -109,6 +111,7 @@ class NewsCategoryController extends Controller
         $category = NewsCategory::findOrFail($id);
         $category->update([
             'category' => $request->category,
+            'slug' => Str::slug($request->category),
             'sub_category' => $request->sub_category,
         ]);
 
