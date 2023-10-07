@@ -29,7 +29,7 @@ class NewsController extends Controller
             $query->where(function ($subquery) use ($search) {
                 $subquery->where('subject', 'like', '%' . $search . '%');
             });
-        })->paginate(20);
+        })->paginate(10);
         $news->appends(['search' => $search]);
         return view('admin.news.index', compact('admin','notification', 'categories', 'news'));
     }
