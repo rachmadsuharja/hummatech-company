@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sosmed;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,7 @@ class ProductsController extends Controller
         Product::create([
             'product_cover' => $cover_name,
             'product_name' => $request->product_name,
+            'slug' => Str::slug($request->product_name),
             'release_date' => $request->release_date,
             'product_desc' => $request->product_desc,
         ]);
@@ -134,6 +136,7 @@ class ProductsController extends Controller
         $product->update([
             'product_cover' => $cover_name,
             'product_name' => $request->product_name,
+            'slug' => Str::slug($request->product_name),
             'release_date' => $request->release_date,
             'product_desc' => $request->product_desc,
         ]);

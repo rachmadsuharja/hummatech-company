@@ -10,6 +10,7 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\WelcomeSlider;
 use App\Models\CompanyProfile;
+use App\Models\SubsidiaryCompany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +28,8 @@ class CompanyProfilesController extends Controller
         $work = WorkMethod::findOrFail(1);
         $sosmed = Sosmed::findOrFail(1);
         $other = OtherInfo::findOrFail(1);
-        return view('admin.company-profile.index', compact('admin', 'notification', 'slider', 'company', 'work', 'sosmed', 'other'));
+        $subsidiary = SubsidiaryCompany::latest()->paginate(4);
+        return view('admin.company-profile.index', compact('admin', 'notification', 'slider', 'company', 'work', 'sosmed', 'other','subsidiary'));
     }
 
     public function update(Request $request) {

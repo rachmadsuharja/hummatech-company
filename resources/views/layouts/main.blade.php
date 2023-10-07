@@ -726,7 +726,11 @@
 </head>
 
 <body class="position-relative">
-
+<!-- Preloader -->
+<div class="preloader bg-light" style="display: grid">
+    <div class="preloader__image"></div>
+</div>
+<!-- /.preloader -->
     @yield('container')
 
     @include('partials.footer')

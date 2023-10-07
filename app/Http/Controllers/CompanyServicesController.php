@@ -54,7 +54,7 @@ class CompanyServicesController extends Controller
         ]);
         if ($validated->fails()) {
             toastr()->error('Gagal menambahkan layanan', 'Failed');
-            return to_route('company-services');
+            return to_route('company-services.index');
         }
 
         CompanyServices::create([

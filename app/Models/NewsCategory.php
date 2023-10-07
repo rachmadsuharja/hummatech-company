@@ -11,7 +11,8 @@ class NewsCategory extends Model
 
     protected $table = 'news_category';
     protected $fillable = ['category', 'slug', 'sub_category'];
-    public function news() {
-        return $this->belongsToMany(News::class, 'category_news', 'category_id', 'news_id');
+    public function pivot() {
+        // return $this->belongsToMany(News::class, 'category_news', 'category_id', 'news_id');
+        return $this->hasMany(CategoryNewsPivot::class);
     }
 }

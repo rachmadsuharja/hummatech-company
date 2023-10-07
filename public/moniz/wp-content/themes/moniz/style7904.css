@@ -6151,7 +6151,7 @@ body.boxed-wrapper {
     border-radius: 50%;
     height: 90px;
     width: 90px;
-    background-color: var(--moniz-black, #1e1e22);
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6161,7 +6161,7 @@ body.boxed-wrapper {
 
 .watch-video__icon:hover {
     background-color: var(--moniz-base, #ffffff);
-    color: var(--moniz-primary, #fc653c);
+    color: #01b0f0;
 }
 
 

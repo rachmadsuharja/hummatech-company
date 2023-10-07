@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('style')
-
+<link rel='stylesheet' id='odometer-css' href='wp-content/plugins/moniz-addon/assets/vendors/odometer/odometer.min11ae.css?ver=1694548906' media='all' />
 @endsection
 
 @section('container')
@@ -76,6 +76,56 @@
                                     <!-- /.container -->
                                 </section>
                                 <!-- /.about-two -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="elementor-section elementor-top-section elementor-element elementor-element-f76b84e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="f76b84e" data-element_type="section">
+            <div class="elementor-container elementor-column-gap-no">
+                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6b97f31" data-id="6b97f31" data-element_type="column">
+                    <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="elementor-element elementor-element-06aa3b3 elementor-widget elementor-widget-moniz-funfact" data-id="06aa3b3" data-element_type="widget" data-widget_type="moniz-funfact.default">
+                            <div class="elementor-widget-container">
+
+                                <!--Counter One Start-->
+                                <section class="counters-one">
+                                    <div class="container">
+                                        <ul class="counters-one__box list-unstyled ml-0">
+                                            <li class="counter-one__single wow fadeInUp" data-wow-delay="100ms">
+                                                <div class="counter-one__icon">
+                                                    <span class="icon-recruit text-primary"></span>
+                                                </div>
+                                                <h3 class="odometer" data-count="860">{{ $counter->school }}</h3>
+                                                <p class="counter-one__text">Sekolah Bergabung</p>
+                                            </li>
+                                            <li class="counter-one__single wow fadeInUp" data-wow-delay="100ms">
+                                                <div class="counter-one__icon">
+                                                    <span class=" icon-recruit text-primary"></span>
+                                                </div>
+                                                <h3 class="odometer" data-count="50">{{ $counter->university }}</h3>
+                                                <p class="counter-one__text">Universitas Bergabung</p>
+                                            </li>
+                                            <li class="counter-one__single wow fadeInUp" data-wow-delay="100ms">
+                                                <div class="counter-one__icon">
+                                                    <span class=" icon-recommend text-primary"></span>
+                                                </div>
+                                                <h3 class="odometer" data-count="93">{{ $counter->alumnus }}</h3>
+                                                <p class="counter-one__text">Alumni Magang</p>
+                                            </li>
+                                            <li class="counter-one__single wow fadeInUp" data-wow-delay="100ms">
+                                                <div class="counter-one__icon">
+                                                    <span class="icon-recommend text-primary"></span>
+                                                </div>
+                                                <h3 class="odometer" data-count="970">{{ $counter->student_quota }}</h3>
+                                                <p class="counter-one__text">Kuota Magang</p>
+                                            </li>
+                                            <li class="counter-one__shape wow fadeInUp" data-wow-delay="500ms"></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                                <!--Counter One End-->
                             </div>
                         </div>
                     </div>
@@ -217,5 +267,6 @@
 @endsection
 
 @section('script')
+<script src='wp-content/plugins/moniz-addon/assets/vendors/odometer/odometer.min11ae.js?ver=1694548906' id='odometer-js'></script>
 
 @endsection

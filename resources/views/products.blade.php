@@ -52,7 +52,7 @@ use Carbon\Carbon;
                                                                 <p class="portfolio-one__web-design-title">{{ Carbon::parse($pro->release_date)->locale('id')->isoFormat('DD MMMM YYYY') }}</p>
                                                             </div>
                                                             <div class="portfolio-one__fimlor">
-                                                                <p class="portfolio-one__fimlor-title"><a href="portfolio/sussia-foundation/index.html">{{ $pro->product_name }}</a></p>
+                                                                <p class="portfolio-one__fimlor-title"><a href="{{ route('produk.details', $pro->slug) }}">{{ $pro->product_name }}</a></p>
                                                             </div>
                                                         </div>
                                                     </div>

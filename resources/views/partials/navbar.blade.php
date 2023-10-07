@@ -26,14 +26,14 @@
                                 <li id="menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-661"><a href="{{ route('pkl') }}" class="{{ (Request::routeIs('pkl')) ? 'text-primary' : ''}}">Magang/PKL</a></li>
                             </ul>
                         </li>
-                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="#"  class="{{ (Request::routeIs('blog')) ? 'text-primary fw-bold' : ''}}">Blog</a>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="#"  class="{{ (Request::routeIs('blog','article.details')) ? 'text-primary fw-bold' : ''}}">Blog</a>
                             <ul class="sub-menu">
                                 @foreach ($categories as $category)
                                     <li id="menu-item-279" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-279"><a href="{{ route('blog', $category->slug) }}" class="{{ (Request::routeIs('blog')) ? 'text-primary' : ''}}">{{ $category->category }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
-                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('produk') }}" class="{{ (Request::routeIs('produk')) ? 'text-primary fw-bold' : ''}}">Produk</a></li>
+                        <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('produk') }}" class="{{ (Request::routeIs('produk','produk.details')) ? 'text-primary fw-bold' : ''}}">Produk</a></li>
                         <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item"><a href="{{ route('kontak') }}" class="{{ (Request::routeIs('kontak')) ? 'text-primary fw-bold' : ''}}">Kontak</a></li>
                     </ul>
                 </div>

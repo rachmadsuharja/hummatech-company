@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@php
+    use Carbon\Carbon;
+@endphp
 @section('style')
 <style>
     .hummatech-blue {
@@ -15,11 +17,6 @@
 @endsection
 
 @section('container')
-<!-- Preloader -->
-<div class="preloader bg-light" style="display: grid">
-    <div class="preloader__image"></div>
-</div>
-<!-- /.preloader -->
 
 <div id="page" class="site page-wrapper">
     <!-- the loop -->
@@ -147,6 +144,7 @@
                 </div>
             </div>
         </section>
+
         <section class="elementor-section elementor-top-section elementor-element elementor-element-739c990 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="739c990" data-element_type="section">
             <div class="elementor-container elementor-column-gap-no">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-eb7323d" data-id="eb7323d" data-element_type="column">
@@ -264,69 +262,153 @@
                 </div>
             </div>
         </section>
-        {{-- <section class="elementor-section elementor-top-section elementor-element elementor-element-ff1463e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ff1463e" data-element_type="section">
-            <div class="elementor-container elementor-column-gap-no">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3f02e4e" data-id="3f02e4e" data-element_type="column">
-                    <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-4875a98 elementor-widget elementor-widget-moniz-blog" data-id="4875a98" data-element_type="widget" data-widget_type="moniz-blog.default">
-                            <div class="elementor-widget-container">
 
-                                <!--Blog One Start-->
-                                <section class="blog-one  ">
-                                    <div class="container">
-                                        <div class="section-title text-center">
-                                            <span class="section-title__tagline">Informasi</span>
-                                            <h2 class="section-title__title">Berita Terbaru</h2>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-4 col-lg-4">
-                                                <!--Blog One Single-->
-                                                <div class="blog-one__single wow fadeInUp" data-wow-delay="100ms">
-                                                    <div class="blog-one__img-box">
-                                                        <div class="blog-one__img">
-                                                            <img loading="lazy" width="370" height="250" src="{{ asset('moniz/wp-content/uploads/2021/07/blog-s-1-370x250.jpg') }}" class="attachment-moniz_blog_370X250 size-moniz_blog_370X250 wp-post-image" alt="" decoding="async" />
-                                                            <a href="delivering-the-best-web-design-agency/index.html">
-                                                                <span class="blog-one__plus"></span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="blog-one__date-box">
-                                                            <p><span>05</span> Jul</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="blog-one__content">
-                                                        <ul class="list-unstyled blog-one__meta">
-                                                            <li><span class="byline"><span class="far fa-user-circle"></span> <span class="author vcard"><a class="url fn n" href="author/j6u43rt5/index.html">LayerDrops</a></span></span>
-                                                            </li>
-                                                            <li><span class="comments-link"><span class="far fa-comments"></span><a href="delivering-the-best-web-design-agency/index.html#comments">2 Comments<span class="screen-reader-text"> on Delivering the best web design agency.</span></a></span>
-                                                            </li>
-                                                        </ul>
-                                                        <h3 class="blog-one__title">
-                                                            <a href="delivering-the-best-web-design-agency/index.html">Delivering the best web design agency.</a>
-                                                        </h3>
-                                                        <p class="blog-one__text">
-                                                            There are many variations of passages of Lorem Ipsum available, </p>
-                                                        <div class="blog-one__bottom">
-                                                            <div class="blog-one__read-btn">
-                                                                <a href="delivering-the-best-web-design-agency/index.html">Read more</a>
-                                                            </div>
-                                                            <div class="blog-one__arrow">
-                                                                <a href="delivering-the-best-web-design-agency/index.html"><span class="icon-right-arrow"></span></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+        <div data-elementor-type="wp-page" data-elementor-id="562" class="elementor elementor-562">
+            <section class="elementor-section elementor-top-section elementor-element elementor-element-bb231d7 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="bb231d7" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6a2ec60" data-id="6a2ec60" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-f87006a elementor-widget elementor-widget-moniz-testimonials" data-id="f87006a" data-element_type="widget" data-widget_type="moniz-testimonials.default">
+                                <div class="elementor-widget-container">
+
+                                    <section class="testimonials-two">
+                                        <div class="container">
+                                            <div class="row">
+                                                <h3 class="text-center mb-3">Partner Kami</h3>
                                             </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!--Blog One End-->
+                                            <div class="thm-swiper__slider swiper-container"
+                                            data-swiper-options='{
+                                                "slidesPerView": 1,
+                                                "slidesPerGroup": 1,
+                                                "spaceBetween": 0,
+                                                "loop": true,
+                                                "autoplay": { "delay": 5000 },
+                                                "pagination": {
+                                                    "el": "#testimonials-five-pagination",
+                                                    "type": "bullets",
+                                                    "clickable": true
+                                                },
+                                                "breakpoints": {
+                                                    "0": {
+                                                        "slidesPerView": 2,
+                                                        "slidesPerGroup": 2,
+                                                        "spaceBetween": 20
+                                                    },
+                                                    "768": {
+                                                        "slidesPerView": 3,
+                                                        "slidesPerGroup": 3,
+                                                        "spaceBetween": 30
+                                                    },
+                                                    "992": {
+                                                        "slidesPerView": 4,
+                                                        "slidesPerGroup": 4,
+                                                        "spaceBetween": 30
+                                                    }
+                                                }
+                                            }'>
+                                                <div class="swiper-wrapper">
+                                                    @forelse ($subsidiary as $sub)
+                                                        <div class="swiper-slide">
+                                                            <div class="testimonials-two__card">
+                                                                <div class="testimonials-two__card__inner p-0">
+                                                                    <div class="m-0 d-flex flex-column align-items-center">
+                                                                        <img src="{{ asset('storage/subsidiary/'.$sub->logo) }}" class="" alt="" decoding="async" />
+                                                                        <!-- /.testimonials-two__image -->
+                                                                        <div class="testimonial-two__meta__content text-center">
+                                                                            <h5 class="text-primary mt-3">{{ $sub->name }}</h5>
+                                                                            <p class="">{{ $sub->company_description }}</p>
+                                                                        </div>
+                                                                        <!-- /.testimonial-two__meta__content -->
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /.testimonials-two__card__inner -->
+                                                            </div>
+                                                            <!-- /.testimonials-two__card -->
+                                                        </div>
+                                                    @empty
+                                                        <hr>
+                                                    @endforelse
+                                                </div>
+                                                <!-- /.swiper-wrapper -->
+                                                <div class="swiper-pagination" id="testimonials-five-pagination"></div>
+                                            </div>
+                                            <!-- /.thm-swiper__slider -->
 
+                                        </div>
+                                        <!-- /.container -->
+                                    </section>
+                                    <!-- /.testimonials-two -->
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section> --}}
+            </section>
+        </div>
+
+        @if ($news->isNotEmpty())
+            <section class="elementor-section elementor-top-section elementor-element elementor-element-ff1463e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ff1463e" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3f02e4e" data-id="3f02e4e" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-4875a98 elementor-widget elementor-widget-moniz-blog" data-id="4875a98" data-element_type="widget" data-widget_type="moniz-blog.default">
+                                <div class="elementor-widget-container">
+
+                                    <!--Blog One Start-->
+                                    <section class="blog-one  ">
+                                        <div class="container">
+                                            <div class="section-title text-center">
+                                                <span class="section-title__tagline">Informasi</span>
+                                                <h2 class="section-title__title">Berita Terbaru</h2>
+                                            </div>
+                                            <div class="row">
+                                                @foreach ($news as $n)
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <div class="blog-one__single wow fadeInUp" data-wow-delay="100ms">
+                                                            <div class="blog-one__img-box">
+                                                                <div class="blog-one__img">
+                                                                    <img loading="lazy" width="370" height="250" src="{{ asset('storage/news/'.$n->photo) }}" class="attachment-moniz_blog_370X250 size-moniz_blog_370X250 wp-post-image" alt="" decoding="async" />
+                                                                    <a href="{{ route('article.details', $n->slug) }}">
+                                                                        <i class="fa fa-eye"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="blog-one__content">
+                                                                <ul class="list-unstyled blog-one__meta">
+                                                                    <li><span class="byline"><span class="far fa-user-circle"></span> <span class="author vcard"><a class="url fn n" href="#">Hummatech</a></span></span>
+                                                                    </li>
+                                                                    <li><span class="comments-link"><span class="far fa-clock"></span><a href="{{ route('article.details', $n->slug) }}#comments">{{ Carbon::parse($n->created_at)->locale('id')->isoFormat('HH:MM, DD MMM YYYY') }}<span class="screen-reader-text"></span></a></span>
+                                                                    </li>
+                                                                </ul>
+                                                                <h3 class="blog-one__title">
+                                                                    <a href="{{ route('article.details', $n->slug) }}">{{ $n->subject }}</a>
+                                                                </h3>
+                                                                <p class="blog-one__text">{!! Str::limit($n->news_content, 100) !!}</p>
+                                                                <div class="blog-one__bottom">
+                                                                    <div class="blog-one__read-btn">
+                                                                        <a href="{{ route('article.details', $n->slug) }}">Baca selengkapnya</a>
+                                                                    </div>
+                                                                    <div class="blog-one__arrow">
+                                                                        <a href="{{ route('article.details', $n->slug) }}"><span class="icon-right-arrow"></span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!--Blog One End-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
         <section class="elementor-section elementor-top-section elementor-element elementor-element-b753f6d elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="b753f6d" data-element_type="section">
             <div class="elementor-container elementor-column-gap-no">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7c56713" data-id="7c56713" data-element_type="column">

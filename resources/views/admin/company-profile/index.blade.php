@@ -22,7 +22,7 @@
         <div class="row mb-3">
             <div class="col-md-8 col-lg-8 col-xl-8 stretch-card">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between border-0">
+                    <div class="card-header bg-white d-flex justify-content-between border-0">
                         <h6 class="card-title">Welcome Slider</h6>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSlider">Tambah</button>
                         <div class="modal fade" id="addSlider" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateTestimoni" aria-hidden="true">
@@ -297,6 +297,113 @@
                 </div>
             </div>
         </div> <!-- row -->
+        <div class="row mb-3">
+            <div class="col-lg-12 col-xl-12 stretch-card">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between border-0">
+                        <h6 class="card-title">Anak Perusahaan</h6>
+                        <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addSubsidiary">Tambah</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="modal fade" id="addSubsidiary" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addSubsidiary" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Anak Perusahaan</h1>
+                                    </div>
+                                    <form action="{{ route('subsidiary-company.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="row d-flex mb-3">
+                                                <label for="logo">Logo Perusahaan</label>
+                                                <div class="col-md-4 col-lg-4 col-xl-4">
+                                                    <input type="file" name="logo" id="logo" class="form-control" data-height="120">
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="name" class="form-label mb-1">Nama Perusahaan</label>
+                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" id="name" placeholder="contoh: PT Get Aplikasi Indonesia">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="company_description" class="form-label mb-1">Deskripsi</label>
+                                                <textarea class="form-control" name="company_description" id="subcompany_description" rows="6" placeholder="Deskripsikan Perusahaan Anda ...">{{ old('company_description') }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="pt-0">Nama</th>
+                                        <th class="pt-0">Deskripsi</th>
+                                        <th class="pt-0 col-lg-2 col-xl-2 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($subsidiary as $sub)
+                                        <tr>
+                                            <td>{{ $sub->name }}</td>
+                                            <td>{{ $sub->company_description }}</td>
+                                            <td class="text-center">
+                                                <form action="{{ route('subsidiary-company.destroy', $sub->id) }}" id="deleteCompany{{ $sub->id }}" onsubmit="deleteCompany(event, {{ $sub->id }})" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn text-primary"><i data-feather="edit" class="icon-md" data-bs-toggle="modal" data-bs-target="#editCompany{{ $sub->id }}"></i></button>
+                                                    <button type="submit" class="btn text-danger"><i data-feather="trash-2" class="icon-md"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <div class="modal fade" id="editCompany{{ $sub->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Perusahaan</h1>
+                                                    </div>
+                                                    <form action="{{ route('subsidiary-company.update', $sub->id) }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('put')
+                                                        <div class="modal-body">
+                                                            <div class="row d-flex mb-3">
+                                                                <label for="logo">Logo Perusahaan</label>
+                                                                <div class="col-md-4 col-lg-4 col-xl-4">
+                                                                    <input type="file" name="logo" id="up_logo" class="form-control logo" data-height="120" data-default-file="{{ asset('storage/subsidiary/'.$sub->logo) }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="name" class="form-label mb-1">Nama Perusahaan</label>
+                                                                <input type="text" class="form-control" name="name" value="{{ $sub->name }}" id="name" placeholder="contoh: PT Get Aplikasi Indonesia">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="company_description" class="form-label mb-1">Deskripsi</label>
+                                                                <textarea class="form-control" name="company_description" id="subcompany_description" rows="6" placeholder="Deskripsikan Perusahaan Anda ...">{{ $sub->company_description }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{ $subsidiary->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-6 col-xl-6 stretch-card">
                 <div class="card">
@@ -414,6 +521,18 @@
             }
         });
 
+        $('#logo').dropify({
+            messages: {
+                'default': '',
+            }
+        });
+
+        $('.logo').dropify({
+            messages: {
+                'default': '',
+            }
+        });
+
         $('.slider_cover').dropify({
             messages: {
                 'default': '',
@@ -434,6 +553,24 @@
                 }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('deleteSlider' + id).submit();
+                }
+            })
+        }
+
+        function deleteCompany(event, id) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Hapus',
+                text: "Apakah anda yakin ingin menghapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteCompany' + id).submit();
                 }
             })
         }

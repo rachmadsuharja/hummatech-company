@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryNewsPivot;
 use App\Models\Inbox;
 use App\Models\Sosmed;
 use App\Models\Counter;
@@ -14,8 +15,10 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use App\Models\CompanyServices;
 use App\Models\IndustrialClass;
+use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Notification;
+use App\Models\SubsidiaryCompany;
 use App\Models\WelcomeSlider;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,7 +34,9 @@ class WelcomeController extends Controller
         $school = IndustrialClass::all();
         $counter = Counter::findOrFail(1);
         $categories = NewsCategory::all();
-        return view('welcome', compact('slider','company', 'services', 'work', 'other', 'sosmed', 'school','counter', 'categories'));
+        $news = News::latest()->limit(3)->get();
+        $subsidiary = SubsidiaryCompany::all();
+        return view('welcome', compact('slider','company', 'services', 'work', 'other', 'sosmed', 'school','counter', 'categories','news','subsidiary'));
     }
 
     public function industrialClass() {
@@ -47,7 +52,8 @@ class WelcomeController extends Controller
         $sosmed = Sosmed::findOrFail(1);
         $testimonial = Testimonial::all();
         $categories = NewsCategory::all();
-        return view('apprenticeship', compact('sosmed','other', 'testimonial','categories'));
+        $counter = Counter::findOrFail(1);
+        return view('apprenticeship', compact('sosmed','other', 'testimonial','categories','counter'));
     }
 
     public function product() {
@@ -58,11 +64,30 @@ class WelcomeController extends Controller
         return view('products', compact('product', 'sosmed','other','categories'));
     }
 
-    public function blog($slug) {
+    public function productDetails(string $slug) {
+        $product = Product::where('slug', $slug)->first();
+        $other = OtherInfo::findOrFail(1);
+        $sosmed = Sosmed::findOrFail(1);
+        $categories = NewsCategory::all();
+        return view('product-details', compact('product','other','sosmed','categories'));
+    }
+
+    public function blog(Request $request, string $slug) {
         $sosmed = Sosmed::findOrFail(1);
         $categories = NewsCategory::all();
         $other = OtherInfo::findOrFail(1);
-        return view('');
+        $category = NewsCategory::where('slug', $slug)->first();
+        $search = $request->input('search');
+        $news = CategoryNewsPivot::where('category_id', $category->id)
+        ->when(request()->has('search'), function ($query) use ($request) {
+            $search = request('search');
+            $query->whereHas('news', function($subquery) use ($request) {
+                $search = request('search');
+                $subquery->where('subject', 'like', '%' . $search . '%');
+            });
+        })->paginate(1);
+        $news->appends(['search' => $search]);
+        return view('blog', compact('sosmed','categories','other','category', 'news'));
     }
 
     public function contact() {
@@ -118,5 +143,14 @@ class WelcomeController extends Controller
         ]);
         toastr()->success('Berhasil mengirim pesan', 'Success');
         return back();
+    }
+
+    public function details(string $slug) {
+        $categories = NewsCategory::all();
+        $news = News::where('slug', $slug)->first();
+        $articles = News::latest()->limit(4)->get();
+        $other = OtherInfo::findOrFail(1);
+        $sosmed = Sosmed::findOrFail(1);
+        return view('article-details', compact('news','sosmed','other','categories','articles'));
     }
 }

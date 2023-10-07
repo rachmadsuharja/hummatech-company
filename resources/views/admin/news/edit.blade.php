@@ -34,7 +34,7 @@ use Carbon\Carbon;
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="m-3">Edit Postingan</h5>
                     </div>
-                    <form action="{{ route('news.update', $news->slug) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('news.update', $news->slug) }}" id="updateNews{{ $news->created_at }}" onsubmit="updateNews(event, {{ $news->created_at }})" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="card-body">
@@ -58,9 +58,24 @@ use Carbon\Carbon;
                                 <div class="col-md-12 col-lg-5 col-xl-5">
                                     <div class="form-group mb-3">
                                         <label for="categories" class="form-label mb-1">Kategori</label>
+                                        {{-- <select class="js-example-basic-multiple form-select" name="category_id[]" multiple="multiple" data-width="100%">
+                                            @foreach ($news->pivot as $category)
+                                                <option value="{{ $category->cate->id }}">{{ $category->category }}</option>
+                                            @endforeach
+                                        </select> --}}
                                         <select class="js-example-basic-multiple form-select" name="category_id[]" multiple="multiple" data-width="100%">
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                                @php
+                                                    $a = false;
+                                                @endphp
+                                                @foreach ($news->pivot as $select)
+                                                    @if ($select->category->id == $category->id)
+                                                        @php
+                                                            $a = true;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                <option value="{{ $category->id }}" {{ ($a) ? "selected" : "" }}>{{ $category->category }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -78,7 +93,8 @@ use Carbon\Carbon;
                             </div>
                         </div>
                         <div class="card-footer border-0 bg-white d-flex justify-content-end">
-                            <button class="btn btn-primary btn-sm">Posting</button>
+                            <a href="{{ route('news.index') }}" class="btn btn-danger btn-sm mx-2">Batal</a>
+                            <button class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -107,5 +123,23 @@ use Carbon\Carbon;
             selector: '#news_content',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         });
+
+        function updateNews(event, id) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Simpan Perubahan',
+                text: "Apakah anda yakin ingin mengubah data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateNews' + id).submit();
+                }
+            })
+        }
     </script>
 @endsection

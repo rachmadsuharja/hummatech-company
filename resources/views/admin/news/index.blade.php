@@ -169,10 +169,25 @@
                                                 <tr>
                                                     <td>{{ $n->subject }}</td>
                                                     <td>{{ Carbon::parse($n->created_at)->locale('id')->isoFormat('HH:MM, DD MMM YYYY') }}</td>
-                                                    <td>{{ $n->category->pluck('category')->implode(', ') }}</td>
+                                                    <td>
+                                                        @php
+                                                            $length_pivot = count($n->pivot) - 1;
+                                                        @endphp
+                                                        @foreach ($n->pivot as $key => $item)
+                                                            @if ($length_pivot == $key)
+                                                            {{ $item->category->category }}
+                                                        @else
+                                                            {{ $item->category->category }},
+                                                            @endif
+                                                        @endforeach
+                                                    </td>
                                                     <td class="d-flex">
                                                         <a href="{{ route('news.edit', ['slug' => $n->slug]) }}" class="btn btn-transparent text-primary"><i class="icon-md" data-feather="edit"></i></a>
-                                                        <a href="{{ route('news.destroy', ['slug' => $n->slug]) }}" class="btn btn-transparent text-danger"><i class="icon-md" data-feather="trash-2"></i></a>
+                                                        <form action="{{ route('news.destroy', $n->slug) }}" id="deleteNews{{ $n->id }}" onsubmit="deleteNews(event, {{ $n->id }})" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-transparent text-danger"><i class="icon-md" data-feather="trash-2"></i></button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -212,6 +227,24 @@
                 }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('updateCategory' + id).submit();
+                }
+            })
+        }
+        
+        function deleteNews(event, id) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Hapus',
+                text: "Apakah anda yakin ingin menghapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteNews' + id).submit();
                 }
             })
         }

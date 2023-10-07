@@ -14,6 +14,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndustrialClassController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SubsidiaryCompanyController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WelcomeSliderController;
 
@@ -33,7 +34,9 @@ Route::get('kelas-industri', [WelcomeController::class, 'industrialClass'])->nam
 Route::get('pkl', [WelcomeController::class, 'apprenticeship'])->name('pkl');
 // Route::get('blog', [WelcomeController::class, 'blog'])->name('blog');
 Route::get('blog/categories/{slug}', [WelcomeController::class, 'blog'])->name('blog');
+Route::get('blog/{slug}', [WelcomeController::class, 'details'])->name('article.details');
 Route::get('produk', [WelcomeController::class, 'product'])->name('produk');
+Route::get('produk/{slug}', [WelcomeController::class, 'productDetails'])->name('produk.details');
 Route::get('kontak', [WelcomeController::class, 'contact'])->name('kontak');
 Route::post('kontak/send', [WelcomeController::class, 'send'])->name('inbox.send');
 
@@ -62,6 +65,7 @@ Route::middleware('admin')->group(function() {
     Route::put('company-profiles/work-method', [CompanyProfilesController::class, 'workUpdate'])->name('work.update');
     Route::put('company-profiles/sosmed', [CompanyProfilesController::class, 'sosmedUpdate'])->name('sosmed.update');
     Route::put('company-profiles/other-info', [CompanyProfilesController::class, 'otherInfoUpdate'])->name('other-info.update');
+    Route::resource('subsidiary-company', SubsidiaryCompanyController::class);
     Route::resource('welcome-slider', WelcomeSliderController::class);
     Route::resource('company-services', CompanyServicesController::class);
     Route::resource('core-features', CoreFeaturesController::class);
