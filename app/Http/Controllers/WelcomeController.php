@@ -85,7 +85,7 @@ class WelcomeController extends Controller
                 $search = request('search');
                 $subquery->where('subject', 'like', '%' . $search . '%');
             });
-        })->paginate(1);
+        })->paginate(5);
         $news->appends(['search' => $search]);
         return view('blog', compact('sosmed','categories','other','category', 'news'));
     }
