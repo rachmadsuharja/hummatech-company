@@ -78,7 +78,6 @@ class WelcomeSliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request);
         $validated = Validator::make($request->all(), [
             'slider_cover' => 'mimes:png,jpg,jpeg',
             'slider_title' => 'required|max:45',
