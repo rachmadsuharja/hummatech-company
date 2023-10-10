@@ -41,7 +41,7 @@ use Carbon\Carbon;
                                         <h2 class="section-title__title">Produk Kami</h2>
                                         <p>Berikut ini beberapa produk buatan Perusahaan kami yang mungkin Anda butuhkan.</p>
                                     </div>
-                                    <div class="row filter-layout masonary-layout">
+                                    <div class="row filter-layout masonary-layout d-flex justify-content-center">
                                         @forelse ($product as $pro)
                                             <div class="col-xl-3 col-lg-6 col-md-6 filter-item mb-4 branding photography">
                                                 <div class="portfolio-one__single wow fadeInUp" data-wow-delay="100ms">

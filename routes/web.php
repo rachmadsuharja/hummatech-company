@@ -54,6 +54,7 @@ Route::middleware('admin')->group(function() {
     Route::get('incoming-apprenticeship', [ApprenticeshipController::class, 'incoming'])->name('incoming-apprenticeship');
     Route::get('incoming-industrial-class', [IndustrialClassController::class, 'incoming'])->name('incoming-industrial-class');
     Route::get('apprenticeship', [ApprenticeshipController::class, 'index'])->name('apprenticeship');
+    Route::put('terms-and-condition/{id}', [ApprenticeshipController::class, 'updateTerms'])->name('terms.update');
     Route::resource('industrial-class', IndustrialClassController::class);
     Route::resource('news', NewsController::class)->parameters(['news' => 'slug']);
     Route::resource('news-categories', NewsCategoryController::class);

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('material_classes', function (Blueprint $table) {
+        Schema::create('apprentice_terms_conditions', function (Blueprint $table) {
             $table->id();
-            $table->enum('study_field', ['RPL','Multimedia','TKJ',]);
-            $table->string('material');
+            $table->longText('terms_and_conditions');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('material_classes');
+        Schema::dropIfExists('apprentice_terms_conditions');
     }
 };

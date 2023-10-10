@@ -347,8 +347,27 @@
                 </div>
             @endforelse
         </div>
-        <div class="row float-end">
+        <div class="row mb-3 float-end">
             {{ $testimonial->links() }}
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12 stretch-card">
+                <div class="card">
+                    <div class="card-header bg-white border-0">
+                        <h6 class="card-title">Syarat dan Ketentuan Peserta PKL</h6>
+                    </div>
+                    <form action="{{ route('terms.update', $terms->id) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="card-body">
+                            <textarea name="terms_and_conditions" id="terms_and_conditions" rows="6" placeholder="Masukkan syarat & ketentuan yang diberlakukan di perusahaan ...">{{ $terms->terms_and_conditions }}</textarea>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <button class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -372,6 +391,11 @@
                     'default': '',
                 }
             });
+        });
+
+        tinymce.init({
+            selector: '#terms_and_conditions',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         });
 
         function deleteTestimoni(event, id) {

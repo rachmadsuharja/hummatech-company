@@ -30,7 +30,7 @@
     <!-- End layout styles -->
     <link rel="stylesheet" href="{{ asset('noble/vendors/sweetalert2/sweetalert2.min.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('noble/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('hummatech_logo.png') }}" />
     <script src="https://cdn.tiny.cloud/1/pgkwxbi2o53fh094amtp86u1odimouuvquzqhp08le3i65n9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @yield('style')
 </head>

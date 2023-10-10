@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CounterSeeder::class,
             SliderSeeder::class,
             NewsCategorySeeder::class,
+            ApprenticeTermsConditionSeeder::class,
         ]);
     }
 }

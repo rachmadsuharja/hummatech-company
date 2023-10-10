@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('xmee/img/favicon.png') }}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('hummatech_logo.png') }}">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{ asset('xmee/css/bootstrap.min.css') }}">
 	<!-- Fontawesome CSS -->

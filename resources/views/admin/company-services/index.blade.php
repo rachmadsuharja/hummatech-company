@@ -194,6 +194,61 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-7 col-xl-7 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline mb-4">
+                            <h6 class="card-title mb-0">Materi Kelas Industri</h6>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#addCoreFeatures" class="btn btn-primary btn-sm"><i data-feather="plus-circle" class="icon-md"></i></button>
+                            <div class="modal fade" id="addCoreFeatures" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editServices" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Fitur</h1>
+                                        </div>
+                                        <form action="{{ route('core-features.store') }}" method="post">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group mb-3">
+                                                    <label for="core_features" class="form-label mb-1">Fitur</label>
+                                                    <textarea class="form-control" rows="6" name="core_features" id="core_features" placeholder="Fitur ...">{{ old('core_features') }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-reponsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Bidang Studi</th>
+                                        <th>Materi</th>
+                                        <th class="text-center" style="width: 5em">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>RPL</td>
+                                        <td>Fundamental Java</td>
+                                        <td class="text-center">
+                                            <form action="{{ route('company-services.destroy', $service->id) }}" id="deleteServices-{{ $service->id }}" onsubmit="confirmDelete(event, {{ $service->id }})" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="button" class="btn btn-primary btn-sm"><i data-feather="edit" class="icon-sm" data-bs-toggle="modal" data-bs-target="#editServicess{{ $service->id }}"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i data-feather="trash-2" class="icon-sm"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
         </div> <!-- row -->
     </div>
 
